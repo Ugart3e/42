@@ -1,4 +1,4 @@
-int strlcpy(char *dest, char *src, int size)
+int ft_strlcpy(char *dest, char *src, int size)
 {
     int totalsize;
     int cnt1;
@@ -25,6 +25,11 @@ int strlcpy(char *dest, char *src, int size)
         {
             dest[cnt1] = src[cnt1];
             cnt1++;
+        }
+        while (cnt1 + cnt2 < size)
+        {
+            dest[cnt2] = '\0';
+            cnt2++;
         }
     }
     return (totalsize);

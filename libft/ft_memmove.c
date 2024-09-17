@@ -1,4 +1,4 @@
-void    *memmove(void *dest, const void *src, int numBytes)
+void    *ft_memmove(void *dest, const void *src, int numBytes)
 {
     unsigned int    i;
     char*   d; 

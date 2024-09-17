@@ -1,4 +1,4 @@
-int isalpha(int *text)
+int ft_isalpha(int *text)
 {
     int cnt;
 

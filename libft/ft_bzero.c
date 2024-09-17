@@ -1,4 +1,4 @@
-void    bzero(void *s, int n)
+void    ft_bzero(void *s, int n)
 {
     unsigned char   *ptr;
     
