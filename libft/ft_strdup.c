@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <stdlib.h>
 
 char *ft_strdup(const char *s) {
     size_t len;
@@ -6,7 +6,7 @@ char *ft_strdup(const char *s) {
     size_t i;
 
     len = 0;
-    dup = (char *)(&your_memory_area);
+    dup = (char *)malloc(len + 1);
     i = 0;
     while (s[len] != '\0') {
         len++;

@@ -1,5 +1,4 @@
-#include <stddef.h>
-
+#include <stdlib.h>
 void *ft_calloc(size_t num, size_t size) {
     size_t total_size;
     void *ptr;
@@ -7,7 +6,7 @@ void *ft_calloc(size_t num, size_t size) {
     size_t i;
 
     total_size = num * size;
-    ptr = (void *)(&your_memory_area);
+    malloc(total_size);
     p = (unsigned char *)ptr;
     i = 0;
     if (ptr == NULL)
