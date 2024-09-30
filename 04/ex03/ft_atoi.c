@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:54:54 by jougarte          #+#    #+#             */
-/*   Updated: 2024/08/12 16:33:01 by jougarte         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_atoi.c										  :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: jougarte <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/08/07 13:54:54 by jougarte		  #+#	#+#			 */
+/*   Updated: 2024/08/12 16:33:01 by jougarte		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 int	ft_atoi(char *str)
@@ -48,8 +48,8 @@ int main()
 	printf("atoi: %d\n", atoi("+42 BLAH!"));
 	printf("ft_atoi: %d\n", ft_atoi("-42"));
 	printf("atoi: %d\n", atoi("-42"));
-	printf("ft_atoi: %d\n", ft_atoi("     +42"));
-	printf("atoi: %d\n", atoi("     +42"));
+	printf("ft_atoi: %d\n", ft_atoi("	 +42"));
+	printf("atoi: %d\n", atoi("	 +42"));
 	printf("ft_atoi: %d\n", ft_atoi("\t\n\v\f\r 42"));
 	printf("atoi: %d\n", atoi("\t\n\v\f\r 42"));
 	printf("ft_atoi: %d\n", ft_atoi("5"));

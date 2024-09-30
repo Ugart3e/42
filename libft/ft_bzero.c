@@ -1,23 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 15:20:08 by peep              #+#    #+#             */
-/*   Updated: 2024/09/25 15:22:04 by jougarte         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-void    ft_bzero(void *s, int n)
+void	ft_bzero(void *s, int n)
 {
-    unsigned char   *ptr;
-    
-    ptr = (unsigned char *)s;
-    while (n--)
-    {
-        *ptr = 0;
-        *ptr++;
-    }
+	unsigned char   *ptr;
+	
+	ptr = (unsigned char *)s;
+	while (n--)
+	{
+		*ptr = 0;
+		*ptr++;
+	}
 }

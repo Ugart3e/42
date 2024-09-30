@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 16:20:06 by jougarte          #+#    #+#             */
-/*   Updated: 2024/08/08 17:27:58 by jougarte         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_putnbr_base.c								   :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: jougarte <marvin@42.fr>					+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/08/07 16:20:06 by jougarte		  #+#	#+#			 */
+/*   Updated: 2024/08/08 17:27:58 by jougarte		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include <unistd.h>
@@ -73,9 +73,9 @@ void	ft_putnbr_base(int nbr, char *base)
 }
 
 /*
-int     main(void)
+int	 main(void)
 {
-    char base[]="02";
-    ft_putnbr_base(16,base);
-    return (0);
+	char base[]="02";
+	ft_putnbr_base(16,base);
+	return (0);
 }*/

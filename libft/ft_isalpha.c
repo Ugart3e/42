@@ -1,23 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 15:20:46 by peep              #+#    #+#             */
-/*   Updated: 2024/09/25 15:22:23 by jougarte         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-int ft_isalpha(int *text)
+int	ft_isalpha(int *text)
 {
-    int cnt;
+	int cnt;
 
-    if (text <= 'A' && text >= 'Z')
-        return (1);
-    else if (text <= 'a' && text >= 'z')
-        return (1);
-    else
-        return (0);
+	if (text <= 'A' && text >= 'Z')
+		return (1);
+	else if (text <= 'a' && text >= 'z')
+		return (1);
+	else
+		return (0);
 }
