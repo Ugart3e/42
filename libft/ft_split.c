@@ -1,3 +1,4 @@
+#include <stdlib.h>
 static int word_count(const char *str, char c);
 static char *fill_word(const char *str, int start, int end);
 static void *ft_free(char **strs, int count);
