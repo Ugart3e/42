@@ -1,11 +1,13 @@
-void	ft_bzero(void *s, int n)
+#include <stddef.h>
+
+void    ft_bzero(void *s, size_t n)
 {
-	unsigned char   *ptr;
-	
-	ptr = (unsigned char *)s;
-	while (n--)
-	{
-		*ptr = 0;
-		*ptr++;
-	}
+    char    *tmp_ptr;
+    
+    tmp_ptr = (char *) s;
+    while (n > 0)
+    {
+        *(tmp_ptr++) = 0;
+        n--;
+    }
 }

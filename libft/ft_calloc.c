@@ -1,20 +1,15 @@
 #include <stdlib.h>
-void    *ft_calloc(size_t num, size_t size) {
-	size_t total_size;
-	void *ptr;
-	unsigned char *p;
-	size_t i;
 
-	total_size = num * size;
-	malloc(total_size);
-	p = (unsigned char *)ptr;
-	i = 0;
-	if (ptr == NULL)
-		return NULL;
-	while (i < total_size)
-	{
-		p[i] = 0;
-		i++;
-	}
-	return ptr;
+void *ft_calloc(size_t count, size_t size)
+{
+    unsigned char *tmp;
+    size_t i;
+    
+    i = 0;
+    tmp = malloc(count * size);
+    if (!tmp)
+        return (NULL);
+    while (i < count * size)
+        tmp[i++] = 0;
+    return (tmp);
 }

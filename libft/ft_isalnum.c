@@ -1,4 +1,4 @@
-int	ft_isalnum(int *text)
+int	ft_isalnum(int text)
 {
 	if (text <= 'A' && text >= 'Z')
 		return (1);
