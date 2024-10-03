@@ -20,7 +20,7 @@ int ft_atoi(const char *str)
 		r = r * 10 + (str[i] - '0');
 		i++;
 	}
-	return (int)(r * s);
+	return ((int)(r * s));
 }
 
 /*
