@@ -71,11 +71,10 @@ void	ft_putnbr_base(int nbr, char *base)
 			ft_putchar(base[nbr_final[i]]);
 	}
 }
-
 /*
 int	 main(void)
 {
-	char base[]="02";
+	char base[]="10";
 	ft_putnbr_base(16,base);
 	return (0);
 }*/
