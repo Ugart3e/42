@@ -1,4 +1,3 @@
-#include <stdlib.h>
 char *ft_strdup(const char *s) {
 	size_t len;
 	char *dup;
