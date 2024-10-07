@@ -1,15 +1,15 @@
-int strncmp(const char *s1, const char *s2, int count)
-{
-	int	c;
-	int	cnt;
+#include <stddef.h>
 
-	c = 0;
-	cnt = 0;
-	while (s1[c] != '\0' && s2[c] != '\0' && cnt <= count)
+int ft_strncmp(const char *s1, const char *s2, size_t count)
+{
+    size_t c = 0;
+    while (c < count && s1[c] != '\0' && s2[c] != '\0')
 	{
-		if (s1[c] != s2[c])
-			return (s1[c] - s2[c]);
-		c++;
-	}
-	return (s1[c] - s2[c]);
+        if (s1[c] != s2[c])
+            return ((unsigned char)s1[c] - (unsigned char)s2[c]);
+        c++;
+    }
+    if (c < count)
+        return ((unsigned char)s1[c] - (unsigned char)s2[c]);
+    return (0);
 }

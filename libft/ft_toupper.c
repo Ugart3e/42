@@ -1,11 +1,6 @@
-char ft_toupper  (char *src)
+int ft_toupper(int src)
 {
-	char	character;
-
-	character = ' ';
-	if (src >= 'a' && src <= 'z')
-		character = (src - 32);
-	else
-		character = src;
-	return (character);
+    if (src >= 'a' && src <= 'z')
+        return src - 32;
+    return src;
 }

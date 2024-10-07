@@ -1,3 +1,4 @@
+#include <unistd.h>
 void    ft_putendl_fd(char *str, int fd)
 {
     int    i;

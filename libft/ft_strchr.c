@@ -1,15 +1,12 @@
-//The  strchr()  function  returns  a  pointer to the first occurrence of the character c in the string s.
-char *strchr(const char *s, int c)
-{
-	int cnt;
-	char	character;
+#include <stddef.h>
+char *strchr(const char *s, int c) {
+    char character = (char)c;
 
-	cnt = 0;
-	character = (char)c;
-	while (s[cnt] != character && s[cnt] != '\0')
-		cnt++;
-	if (s[cnt] == character)
-		return (s[cnt]);
-	else
-		return (0);
+    while (*s != character) {
+        if (*s == '\0') {
+            return (NULL);
+        }
+        s++;
+    }
+    return ((char *)s);
 }

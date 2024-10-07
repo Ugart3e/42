@@ -1,9 +1,8 @@
-int strlen(char *text)
-{
-	int cnt;
+#include <stddef.h>
 
-	cnt = 0;
-	while (text[cnt] != '\0')
-		cnt++;
-	return (cnt);
+int ft_strlen(const char *text) {
+    int cnt = 0;
+    while (text[cnt] != '\0')
+        cnt++;
+    return (cnt);
 }

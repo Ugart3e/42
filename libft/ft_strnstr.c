@@ -1,23 +1,20 @@
-char	*ft_strnstr(const char *haystack, const char *needle, int len)
-{
-	unsigned long	i;
-	int				j;
+#include <stddef.h>
 
-	j = 0;
-	i = 0;
-	if (!*needle)
-		return ((char *)haystack);
-	while (haystack[i])
-	{
-		j = 0;
-		while (haystack[i] == needle[j] && haystack[i] && i < len)
-		{
-			i++;
-			j++;
-		}
-		if (!needle[j])
-			return ((char *)&haystack[i - j]);
-		i = (i - j) + 1;
-	}
-	return ((char *)haystack);
+char *ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+    size_t i;
+    size_t j;
+    if (!*needle)
+        return ((char *)haystack);
+    i = 0;
+    while (haystack[i] && i < len) {
+        j = 0;
+        while (haystack[i + j] == needle[j] && (i + j) < len && needle[j]) {
+            j++;
+        }
+        if (!needle[j])
+            return ((char *)&haystack[i]);
+        i++;
+    }
+    return (NULL);
 }
