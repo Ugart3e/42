@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:01:02 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:34:58 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:55:47 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	int_len(long nbr);
 static char	*pre_conv(int len);
+static char	*handle_zero(char *result);
+static void	fill_result(char *result, long nbr, int len);
 
 char	*ft_itoa(int n)
 {
@@ -23,7 +25,7 @@ char	*ft_itoa(int n)
 
 	nbr = n;
 	len = int_len(nbr);
-	*result = pre_conv(len);
+	result = pre_conv(len);
 	if (!result)
 		return (NULL);
 	if (nbr == 0)

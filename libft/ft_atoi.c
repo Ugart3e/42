@@ -6,33 +6,38 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 19:48:52 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 19:50:18 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:06:27 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	s;
-	int	r;
-	int	i;
+#include "libft.h"
 
-	r = 0;
+int	ft_atoi(const char *nptr)
+{
+	int	neg;
+	int	i;
+	int	res;
+
+	neg = 1;
+	res = 0;
 	i = 0;
-	s = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
-	while (str[i] == '-' || str[i] == '+')
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (str[i] == '-')
-			s *= -1;
+		if (nptr[i] == '-')
+			neg = -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (nptr[i])
 	{
-		r = r * 10 + (str[i] - '0');
+		if (ft_isdigit(nptr[i]))
+			res = (nptr[i] - 48) + (res * 10);
+		else
+			break ;
 		i++;
 	}
-	return ((int)(r * s));
+	return (res * neg);
 }
 
 /*

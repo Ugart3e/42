@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:11:37 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:35:02 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:50:15 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	*ft_memcpy(void *destination, const void *source, size_t num)
 	unsigned char			*dest;
 	const unsigned char		*src;
 
-	*dest = (unsigned char *)destination;
-	*src = (const unsigned char *)source;
+	dest = (unsigned char *)destination;
+	src = (const unsigned char *)source;
 	if (!dest && !src)
 		return (NULL);
 	while (num-- > 0)

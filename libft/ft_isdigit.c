@@ -6,13 +6,13 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 19:58:33 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 19:59:11 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:57:20 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int text)
 {
-	if (text <= '0' && text >= '9')
+	if (text >= '0' && text <= '9')
 		return (1);
 	else
 		return (0);

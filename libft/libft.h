@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:25 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:42:16 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:53:14 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ char	*strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(const char *s1, const char *s2);
-size_t	ft_strlcat(char *dest, char *src, unsigned int size);
-size_t	ft_strlcpy(char *dest, char *src, int size);
+size_t	ft_strlcat(char *dest, const char *src, size_t size);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *text);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *s1, const char *s2, size_t count);
