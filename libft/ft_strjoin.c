@@ -1,32 +1,39 @@
-#include <stdlib.h>
-#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 18:15:59 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/09 18:34:32 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *ft_strjoin(const char *s1, const char *s2)
+#include "libft.h"
+
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-    size_t totalsize = 0;
-    size_t c1 = 0;
-    size_t c2 = 0;
-    if (!s1 || !s2)
-        return NULL;
-    while (s1[totalsize] != '\0')
-        totalsize++;
-    while (s2[c2] != '\0')
+	char	*temp;
+	size_t	cont;
+	size_t	cont2;
+
+	cont = 0;
+	cont2 = 0;
+	temp = (char *)s1;
+	temp = (char *)malloc (((ft_strlen(s1) + ft_strlen(s2) + 1))
+			* sizeof(char));
+	if (!temp)
+		return (NULL);
+	while (cont < (ft_strlen(s1)))
+		temp[cont2++] = s1[cont++];
+	cont = 0;
+	while (s2[cont])
 	{
-        totalsize++;
-        c2++;
-    }
-    char *s3 = (char *)malloc(totalsize + 1);
-    if (!s3)
-        return (NULL);
-    while (s1[c1] != '\0')
-	{
-        s3[c1] = s1[c1];
-        c1++;
-    }
-	while (s2[c2] != '\0') {
-        s3[c1 + c2] = s2[c2];
-        c2++;
-    }
-	s3[c1 + c2] = '\0';
-    return (s3);
+		temp[cont2] = s2[cont];
+		cont2++;
+		cont++;
+	}
+	temp[cont2] = '\0';
+	return (temp);
 }

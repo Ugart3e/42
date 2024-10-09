@@ -1,34 +1,37 @@
-#include <stdlib.h>
-#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 19:31:35 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/09 19:40:12 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *ft_substr(char const *s, unsigned int start, size_t len) 
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    char *substr;
-    size_t i;
-    size_t s_len;
-    if (!s)
-        return (NULL);
-    s_len = 0;
-    while (s[s_len] != '\0')
-        s_len++;
-    if (start >= s_len)
-    {
-        substr = (char *)malloc(1);
-        if (substr)
-            substr[0] = '\0';
-        return substr;
-    }
-    if (len > s_len - start)
-        len = s_len - start;
-    substr = (char *)malloc(len + 1);
-    if (!substr)
-        return (NULL);
-    i = 0;
-    while (i < len)
-    {
-        substr[i] = s[start + i];
-        i++;
-    }
-    substr[i] = '\0';
-    return (substr);
+	size_t		cont;
+	char		*temp;
+
+	temp = (char *)s;
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	temp = ft_calloc(len + 1, sizeof(char));
+	if (!temp)
+		return (NULL);
+	cont = 0;
+	while (cont < len)
+	{
+		temp[cont] = s[start + cont];
+		cont++;
+	}
+	return ((char *)temp);
 }

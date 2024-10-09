@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:13:59 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 20:24:46 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:35:06 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 static void	move_backward(char *d, const char *s, size_t *numBytes)
 {

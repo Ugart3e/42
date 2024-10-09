@@ -34,11 +34,9 @@ SOURCES        :=      ft_atoi.c \
                           ft_putnbr_fd.c \
                           ft_split.c \
                           ft_strmapi.c \
-                          ft_strtrim.c \
+                          ft_strtrim.c
                           
 OBJECTS = $(SOURCES:.c=.o)
-
-OBJECTS_BONUS = $(SOURCES:.c=.o) $(SOURCES_BONUS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -46,18 +44,15 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-$(AR) -r $@ $?
-
-bonus: $(OBJECTS_BONUS)
-$(AR) rcs $(NAME) $(OBJECTS_BONUS)
+    $(AR) -r $@ $?
 
 %.o: %.c
-$(CC) -c $(CFLAGS) $?
+    $(CC) -c $(CFLAGS) $?
 
 clean:
-rm -f $(OBJECTS) $(OBJECTS_BONUS)
+    rm -f $(OBJECTS)
 
 fclean: clean
-rm -f $(NAME)
+    rm -f $(NAME)
 
 re: fclean all

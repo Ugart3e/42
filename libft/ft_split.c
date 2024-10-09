@@ -6,18 +6,16 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:30:00 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 20:37:51 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:35:26 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static int		word_count(const char *str, char c);
 static char		*fill_word(const char *str, int start, int end);
 static void		*ft_free(char **strs, int count);
 static void		ft_initiate_vars(size_t *i, int *j, int *s_word);
-static size_t	ft_strlen(const char *str);
-static void		*ft_calloc(size_t count, size_t size);
 
 char	**ft_split(const char *s, char c)
 {
@@ -106,33 +104,4 @@ static int	word_count(const char *str, char c)
 		str++;
 	}
 	return (count);
-}
-
-static size_t	ft_strlen(const char *str)
-{
-	size_t	length;
-
-	length = 0;
-	while (str[length] != '\0')
-		length++;
-	return (length);
-}
-
-static void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-	size_t	total_size;
-	size_t	i;
-
-	total_size = count * size;
-	i = 0;
-	ptr = malloc(total_size);
-	if (!ptr)
-		return (NULL);
-	while (i < total_size)
-	{
-		((char *)ptr)[i] = 0;
-		i++;
-	}
-	return (ptr);
 }

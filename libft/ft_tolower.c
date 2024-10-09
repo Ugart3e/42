@@ -1,6 +1,18 @@
-int ft_tolower(int src)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 19:40:22 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/09 19:41:14 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	ft_tolower(int src)
 {
-    if (src >= 'A' && src <= 'Z')
-        return src + 32;
-    return src;
+	if (src >= 'A' && src <= 'Z')
+		return (src + 32);
+	return (src);
 }

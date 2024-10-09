@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:01:02 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 20:10:22 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:34:58 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static int	int_len(long nbr);
 static char	*pre_conv(int len);

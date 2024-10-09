@@ -1,36 +1,47 @@
-int ft_strlcpy(char *dest, char *src, int size)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 18:41:18 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/09 18:41:29 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int totalsize;
-	int cnt1;
-	int cnt2;
+	size_t	totalsize;
+	size_t	cnt1;
 
 	totalsize = 0;
 	cnt1 = 0;
-	cnt2 = 0;
-	while (src[cnt1] != '\0')
-	{
+	while (src[totalsize] != '\0')
 		totalsize++;
+	if (size == 0)
+		return (totalsize);
+	while (cnt1 < size - 1 && src[cnt1] != '\0')
+	{
+		dest[cnt1] = src[cnt1];
 		cnt1++;
 	}
-	while (dest[cnt2] != '\0')
-	{
-		totalsize++;
-		cnt2++;
-	}
-	cnt1 = 0;
-	cnt2 = 0;
-	if (size >= totalsize)
-	{
-		while (src[cnt1] != '\0')
-		{
-			dest[cnt1] = src[cnt1];
-			cnt1++;
-		}
-		while (cnt1 + cnt2 < size)
-		{
-			dest[cnt2] = '\0';
-			cnt2++;
-		}
-	}
+	dest[cnt1] = '\0';
 	return (totalsize);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+    char src[] = "Hello, World!";
+    char dest[50];
+    size_t size = 5;
+
+    size_t result = ft_strlcpy(dest, src, size);
+    printf("Dest: %s\n", dest);
+    printf("Total size: %zu\n", result);
+}
+*/
