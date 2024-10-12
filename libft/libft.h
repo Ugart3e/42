@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:25 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:53:14 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:03:44 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *str, int fd);
 char	**ft_split(const char *s, char c);
-char	*strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_strjoin(const char *s1, const char *s2);
@@ -45,7 +45,7 @@ size_t	ft_strlen(const char *text);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *s1, const char *s2, size_t count);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	*strrchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int src);

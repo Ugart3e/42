@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:30:00 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:35:26 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/12 14:54:01 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**ft_split(const char *s, char c)
 	res = ft_calloc(word_count(s, c) + 1, sizeof(char *));
 	if (!res)
 		return (NULL);
-	while (i < ft_strlen(s))
+	while (i <= ft_strlen(s))
 	{
 		if (s[i] != c && s_word < 0)
 			s_word = i;

@@ -6,13 +6,13 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:27:05 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:54:28 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/12 15:08:29 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	const char	*last;
 	char		character;
@@ -25,5 +25,7 @@ char	*strrchr(const char *s, int c)
 			last = s;
 		s++;
 	}
+	if (character == '\0')
+		return ((char *)s);
 	return ((char *)last);
 }
