@@ -6,38 +6,16 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:01:02 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:55:47 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:19:02 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	int_len(long nbr);
+/* static int	int_len(long nbr);
 static char	*pre_conv(int len);
 static char	*handle_zero(char *result);
-static void	fill_result(char *result, long nbr, int len);
-
-char	*ft_itoa(int n)
-{
-	long	nbr;
-	int		len;
-	char	*result;
-
-	nbr = n;
-	len = int_len(nbr);
-	result = pre_conv(len);
-	if (!result)
-		return (NULL);
-	if (nbr == 0)
-		return (handle_zero(result));
-	if (n < 0)
-	{
-		nbr = -nbr;
-		result[0] = '-';
-	}
-	fill_result(result, nbr, len);
-	return (result);
-}
+static void	fill_result(char *result, long nbr, int len); */
 
 static char	*handle_zero(char *result)
 {
@@ -87,4 +65,26 @@ static int	int_len(long nbr)
 		count++;
 	}
 	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	long	nbr;
+	int		len;
+	char	*result;
+
+	nbr = n;
+	len = int_len(nbr);
+	result = pre_conv(len);
+	if (!result)
+		return (NULL);
+	if (nbr == 0)
+		return (handle_zero(result));
+	if (n < 0)
+	{
+		nbr = -nbr;
+		result[0] = '-';
+	}
+	fill_result(result, nbr, len);
+	return (result);
 }

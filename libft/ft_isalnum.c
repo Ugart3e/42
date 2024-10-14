@@ -6,9 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 19:55:12 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:57:40 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:16:40 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isalnum(int text)
 {
