@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:43:31 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/19 14:43:50 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:09:02 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int	ft_putchar(int c)
 {
-	return (write (1, &c, 1));
+	return (write(1, &c, 1));
 }

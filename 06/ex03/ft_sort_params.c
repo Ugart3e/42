@@ -34,9 +34,9 @@ int	main(int argc, char **argv)
 		}
 		i = 0;
 		while (argv[sm][i])
-			write (1, &argv[sm][i++], 1);
+			write(1, &argv[sm][i++], 1);
 		argv[sm][0] = 127;
-		write (1, "\n", 1);
+		write(1, "\n", 1);
 	}
 	return (0);
 }

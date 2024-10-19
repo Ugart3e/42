@@ -21,7 +21,7 @@ void	ft_print_numbers(void)
 	while (number <= 9)
 	{
 		c = number + '0';
-		write (1, &c, 1);
+		write(1, &c, 1);
 		number++ ;
 	}
 }

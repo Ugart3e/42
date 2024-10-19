@@ -6,13 +6,13 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:37:26 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/19 14:53:04 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:08:05 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static int	converter(char format, va_list args)
+static int	formatter(char format, va_list args)
 {
 	if (format == 'c')
 		return (ft_putchar(va_arg(args, int)));
@@ -23,11 +23,11 @@ static int	converter(char format, va_list args)
 	else if (format == 'd' || format == 'i')
 		return (ft_putnbr(va_arg(args, int)));
 	else if (format == 'u')
-		return (ft_print_unsignedint(va_arg(args, unsigned int)));
+		return (ft_printf_unsignedint(va_arg(args, unsigned int)));
 	else if (format == 'x')
-		return (ft_print_hex(va_arg(args, unsigned int), "0123456789abcdef"));
+		return (ft_printf_hex(va_arg(args, unsigned int), "0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_print_hex(va_arg(args, unsigned int), "0123456789ABCDEF"));
+		return (ft_printf_hex(va_arg(args, unsigned int), "0123456789ABCDEF"));
 	else if (format == '%')
 		return (ft_putchar('%'));
 	return (1);
@@ -46,7 +46,7 @@ int	ft_printf(char const *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			length += converter(format[i + 1], args);
+			length += formatter(format[i + 1], args);
 			i++;
 		}
 		else
