@@ -5,59 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 19:08:41 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/15 18:35:08 by jougarte         ###   ########.fr       */
+/*   Created: 2024/10/19 14:37:26 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/19 14:53:04 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
+#include "printf.h"
 
-int	ft_see_format(char character, va_list *args)
+static int	converter(char format, va_list args)
 {
-	int	cnt;
-
-	if (character == 'c' || character == '%')
-		return (ft_putchar(va_arg(*args, int)));
-	else if (character == 'u')
-		return (cnt);
-	else if (character == 's')
-		return (cnt);
-	else if (character == 'x' || character == 'X')
-		return (cnt);
-	else if (character == 'd' || character == 'i')
-		return (cnt);
-	else if (character == 'p')
-		return (cnt);
+	if (format == 'c')
+		return (ft_putchar(va_arg(args, int)));
+	else if (format == 's')
+		return (ft_putstr(va_arg(args, char *)));
+	else if (format == 'p')
+		return (ft_printf_ptr(va_arg(args, uintptr_t)));
+	else if (format == 'd' || format == 'i')
+		return (ft_putnbr(va_arg(args, int)));
+	else if (format == 'u')
+		return (ft_print_unsignedint(va_arg(args, unsigned int)));
+	else if (format == 'x')
+		return (ft_print_hex(va_arg(args, unsigned int), "0123456789abcdef"));
+	else if (format == 'X')
+		return (ft_print_hex(va_arg(args, unsigned int), "0123456789ABCDEF"));
+	else if (format == '%')
+		return (ft_putchar('%'));
+	return (1);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(char const *format, ...)
 {
-	va_list			args;
-	unsigned int	cnt;
-	int				i;
-	int				type;
+	va_list	args;
+	int		i;
+	int		length;
 
-	cnt = 0;
-	i = 0;
-	type = 0;
 	va_start(args, format);
-	while (format[i] != '\0')
+	i = 0;
+	length = 0;
+	while (format[i])
 	{
 		if (format[i] == '%')
-			cnt += ft_see_format(format[i + 1], &args);
+		{
+			length += converter(format[i + 1], args);
+			i++;
+		}
 		else
 		{
-			ft_putchar(format[i]);
-			cnt++;
+			length += ft_putchar(format[i]);
+			i++;
 		}
-		i++;
 	}
 	va_end(args);
-	return (cnt);
+	return (length);
 }
-
-/* int main()
-{
-	ft_printf("Hola soy %s blablabla", "pepe");
-	return 0;
-} */
