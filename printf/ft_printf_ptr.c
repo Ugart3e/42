@@ -6,13 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:44:56 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 13:47:56 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:56:21 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_putchar_fd(char c, int fd);
 
 int	ft_ptr_len(uintptr_t num)
 {
