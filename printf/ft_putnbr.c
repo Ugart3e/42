@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:47:12 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/19 14:47:15 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:42:07 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putnbr(int n)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	if (n == -2147483648)
