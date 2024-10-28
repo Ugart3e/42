@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:44:56 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 15:56:21 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:40:22 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	ft_printf_ptr(uintptr_t ptr)
 	int	lenght;
 
 	lenght = 0;
-	lenght += write(1, "0x", 2);
 	if (ptr == 0)
-		lenght += write(1, "0", 1);
+		lenght += write(1, "(nil)", 5);
 	else
 	{
+		lenght += write(1, "0x", 2);
 		ft_put_ptr(ptr);
 		lenght += ft_ptr_len(ptr);
 	}
