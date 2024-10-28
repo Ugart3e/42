@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
+/*   Updated: 2024/10/28 01:15:17 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //read malloc free
 //return linea leida o null
+
 #include <unistd.h>
 char	*ft_get_next_line(int fd)
 {
