@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:32:46 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/28 00:32:49 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:54:28 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
-		return (ft_free(&s1));
+	//POSIBLE ERROR EN VEZ DE 0 ES UN FREE DE s1
+		return (0);
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];
