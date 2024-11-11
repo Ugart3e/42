@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 04:48:05 by erico-ke         ###   ########.fr       */
+/*   Updated: 2024/11/11 05:01:16 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ char *ft_newline(int fd)
 
     buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
     if (read(fd, buffer, BUFFER_SIZE) <= 0)
-        return (buffer);
+    {
+        free(buffer);
+        return (NULL);
+    }
     while (!ft_strchr(buffer, '\n')) 
     {
         tmp = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
@@ -63,7 +66,7 @@ char *get_next_line(int fd)
     return (line);
 }
 
-int main()
+/* int main()
 {
     int fd = open("txt.txt", O_RDONLY);
     char *r;
@@ -82,4 +85,4 @@ int main()
     }
     close(fd);
     return 0;
-}
+} */
