@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 05:34:24 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 06:24:55 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ char *get_next_line(int fd)
     return (line);
 }
 
-/* int main()
+int main()
 {
     int fd = open("txt.txt", O_RDONLY);
     char *r;
     int i = 0;
-    while (i < 10)
+    while (i < 1000000)
     {
         r = get_next_line(fd);
         if (r)
@@ -81,4 +81,4 @@ char *get_next_line(int fd)
     }
     close(fd);
     return 0;
-} */
+}
