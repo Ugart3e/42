@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/07 20:04:57 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 03:27:19 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,71 @@
 #include <stdio.h>
 #include "get_next_line.h"
 
-char	*ft_newline(char *line)
+char *ft_newline(int fd)
 {
-	size_t	i;
+    char *buffer;
+    char *tmp;
 
+    buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
+    if (read(fd, buffer, BUFFER_SIZE) <= 0)
+        return (buffer);
+    while (!ft_strchr(buffer, '\n')) 
+    {
+        tmp = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
+        if (read(fd, tmp, BUFFER_SIZE) <= 0)
+        {
+            free(tmp);
+            break;
+        }
+        buffer = ft_strjoin(buffer, tmp);
+        free(tmp);
+    }
+    return (buffer);
+}
+
+char *get_next_line(int fd)
+{
+    static char *storage = NULL;
+    char *trashline;
+    char *line;
+    int i;
+
+    trashline = ft_newline(fd);
+    if ((!trashline && !storage) || (trashline[0] == '\0' && !storage))
+    {
+        free(trashline);
+        return (NULL);
+    }
+    trashline = ft_strjoin(storage, trashline);
 	i = 0;
-	while (line[i] != '\n')
-	{
-		i++;
-	}
-	return (ft_substr(line, 0, i));
+    while (trashline[i] != '\n' && trashline[i] != '\0')
+        i++;
+    line = ft_substr(trashline, 0, i + 1);
+	if (trashline[i] == '\n')
+        storage = ft_substr(trashline, i + 1, ft_strlen(trashline) - i - 1);
+    else
+        storage = NULL;
+    free(trashline);
+    return (line);
 }
 
-char	*get_next_line(int fd)
+int main()
 {
-	//static char	*save;
-	char		*line;
-	char		*pre;
-	
-	line = malloc (BUFFER_SIZE + 1);
-	read(fd, line, BUFFER_SIZE);
-	if (ft_strchr(line, '\n') != 0)
-	{
-		pre = ft_newline(line);
-		line = malloc(ft_strlen(pre));
-		line = pre;
-	}
-	
-	return (line);
-	
-}
-
-int main ()
-{
-	int fd = open("txt.txt", O_RDONLY);
-	//r = linea 
-		char *r = get_next_line(fd);
-		printf("%s", r);
-			return (0);
-
+    int fd = open("txt.txt", O_RDONLY);
+    char *r;
+    int i = 0;
+    while (i < 13)
+    {
+        r = get_next_line(fd);
+        if (r)
+        {
+            printf("%s", r);
+            free(r);
+        }
+        else
+            break;
+        i++;
+    }
+    close(fd);
+    return 0;
 }

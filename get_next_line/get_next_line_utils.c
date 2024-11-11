@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:32:46 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/07 19:54:28 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/10 20:48:01 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,18 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		res[i++] = s[start++];
 	res[i] = '\0';
 	return (res);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	unsigned char	*tmp;
+	size_t			i;
+
+	i = 0;
+	tmp = malloc(count * size);
+	if (!tmp)
+		return (NULL);
+	while (i < count * size)
+		tmp[i++] = 0;
+	return (tmp);
 }
