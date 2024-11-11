@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 03:36:17 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 05:12:05 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char *ft_newline(int fd)
             break;
         }
         buffer = ft_strjoin(buffer, tmp);
-        free(tmp);
     }
     return (buffer);
 }
@@ -62,8 +61,8 @@ char *get_next_line(int fd)
     free(trashline);
     return (line);
 }
-/* 
-int main()
+
+/* int main()
 {
     int fd = open("txt.txt", O_RDONLY);
     char *r;

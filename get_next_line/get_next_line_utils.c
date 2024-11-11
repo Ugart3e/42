@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:32:46 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/10 20:48:01 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 05:10:52 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i + c] = s2[c];
 	str[i + c] = '\0';
 	free(s1);
+	free(s2);
 	return (str);
 }
 
