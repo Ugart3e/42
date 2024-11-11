@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 05:30:38 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 05:34:24 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ char *ft_newline(int fd)
 
     buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
     if (read(fd, buffer, BUFFER_SIZE) <= 0)
-    {
-        free(buffer);
-        return (NULL);
-    }
+        return (buffer);
     while (!ft_strchr(buffer, '\n')) 
     {
         tmp = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
         if (read(fd, tmp, BUFFER_SIZE) <= 0)
         {
             free(tmp);
-            return (NULL);
+            break;
         }
         buffer = ft_strjoin(buffer, tmp);
     }
