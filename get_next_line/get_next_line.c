@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 06:24:55 by erico-ke         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:13:20 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char *get_next_line(int fd)
     free(trashline);
     return (line);
 }
-
+/* 
 int main()
 {
     int fd = open("txt.txt", O_RDONLY);
@@ -81,4 +81,4 @@ int main()
     }
     close(fd);
     return 0;
-}
+} */

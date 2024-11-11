@@ -61,11 +61,13 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*res;
+	size_t	strl;
 
+	strl = ft_strlen(s);
 	i = 0;
 	if (!s)
 		return (0);
-	if (start > ft_strlen(s))
+	if (start > strl)
 	{
 		res = malloc(sizeof(char) * (1));
 		if (!res)
@@ -73,12 +75,12 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		res[0] = '\0';
 		return (res);
 	}
-	if (ft_strlen(s) - start < len)
-		len = ft_strlen(s) - start;
+	if (strl - start < len)
+		len = strl - start;
 	res = malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (NULL);
-	while (start < ft_strlen(s) && i < len && s[start])
+	while (start < strl && i < len && s[start])
 		res[i++] = s[start++];
 	res[i] = '\0';
 	return (res);
