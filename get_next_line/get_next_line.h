@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 00:33:21 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 06:23:30 by erico-ke         ###   ########.fr       */
+/*   Created: 2024/11/11 11:42:23 by jougarte          #+#    #+#             */
+/*   Updated: 2024/11/11 11:44:56 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1000000
+#  define BUFFER_SIZE	42
 # endif
-# include<unistd.h>
-# include<stdio.h>
-# include<stdlib.h>
-# include<fcntl.h>
-# include<limits.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
 
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);
