@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 03:36:17 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 04:34:51 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 //return linea leida o null
 #include <stdio.h>
 #include "get_next_line.h"
-
+//hola
 char *ft_newline(int fd)
 {
     char *buffer;
