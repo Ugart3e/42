@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:33:21 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 03:25:04 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 03:37:47 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include<fcntl.h>
 # include<limits.h>
 
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
+char    *get_next_line(int fd);
 size_t	ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);

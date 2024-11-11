@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 03:27:19 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 03:36:17 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ char *get_next_line(int fd)
     free(trashline);
     return (line);
 }
-
+/* 
 int main()
 {
     int fd = open("txt.txt", O_RDONLY);
     char *r;
     int i = 0;
-    while (i < 13)
+    while (i < 10)
     {
         r = get_next_line(fd);
         if (r)
@@ -82,4 +82,4 @@ int main()
     }
     close(fd);
     return 0;
-}
+} */
