@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 04:34:51 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 04:48:05 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char *ft_newline(int fd)
         if (read(fd, tmp, BUFFER_SIZE) <= 0)
         {
             free(tmp);
-            break;
+            return (NULL);
         }
         buffer = ft_strjoin(buffer, tmp);
         free(tmp);
@@ -62,7 +62,7 @@ char *get_next_line(int fd)
     free(trashline);
     return (line);
 }
-/* 
+
 int main()
 {
     int fd = open("txt.txt", O_RDONLY);
@@ -82,4 +82,4 @@ int main()
     }
     close(fd);
     return 0;
-} */
+}

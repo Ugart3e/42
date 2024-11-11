@@ -6,7 +6,7 @@
 /*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:32:46 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 04:33:03 by erico-ke         ###   ########.fr       */
+/*   Updated: 2024/11/11 04:40:02 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i + c] = s2[c];
 	str[i + c] = '\0';
 	free(s1);
+	free(s2);
 	return (str);
 }
 
