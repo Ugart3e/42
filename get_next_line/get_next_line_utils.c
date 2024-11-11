@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: erico-ke <erico-ke@42malaga.student.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 00:32:46 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/10 20:48:01 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 04:33:03 by erico-ke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+//aa
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
