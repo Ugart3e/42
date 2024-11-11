@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 05:12:05 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 05:30:38 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 //return linea leida o null
 #include <stdio.h>
 #include "get_next_line.h"
-
+//hola
 char *ft_newline(int fd)
 {
     char *buffer;
@@ -22,14 +22,17 @@ char *ft_newline(int fd)
 
     buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
     if (read(fd, buffer, BUFFER_SIZE) <= 0)
-        return (buffer);
+    {
+        free(buffer);
+        return (NULL);
+    }
     while (!ft_strchr(buffer, '\n')) 
     {
         tmp = ft_calloc((BUFFER_SIZE + 1), sizeof(char *));
         if (read(fd, tmp, BUFFER_SIZE) <= 0)
         {
             free(tmp);
-            break;
+            return (NULL);
         }
         buffer = ft_strjoin(buffer, tmp);
     }
