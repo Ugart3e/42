@@ -6,12 +6,12 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 11:42:04 by jougarte         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:18:18 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
+#include <stdio.h>
 char	*ft_newline(int fd)
 {
 	char	*buffer;
@@ -52,9 +52,30 @@ char	*get_next_line(int fd)
 		i++;
 	line = ft_substr(trashline, 0, i + 1);
 	if (trashline[i] == '\n')
-		storage = ft_substr(trashline, i + 1, ft_strlen(trashline) - i - 1);
+		storage = ft_substr(trashline, i + 1, ft_strlen(trashline) - i);
 	else
 		storage = NULL;
 	free(trashline);
 	return (line);
+}
+
+int main()
+{
+	int fd = open("txt.txt", O_RDONLY);
+    char *r;
+    int i = 0;
+    while (i < 10)
+    {
+        r = get_next_line(fd);
+        if (r)
+        {
+            printf("%s", r);
+            free(r);
+        }
+        else
+            break;
+        i++;
+    }
+    close(fd);
+    return 0;
 }
