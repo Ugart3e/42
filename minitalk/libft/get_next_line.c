@@ -6,11 +6,12 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 01:15:16 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 12:18:18 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:23:28 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_newline(int fd)
 {
 	char	*buffer;

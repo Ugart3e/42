@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:25 by jougarte          #+#    #+#             */
-/*   Updated: 2025/01/11 15:47:06 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:23:39 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_substrg(char *s, unsigned int start, size_t len);
 char	*ft_strchrg(char *s, int c);
 size_t	ft_strleng(char *s);
 char	*ft_strjoing(char *s1, char *s2);
-size_t		ft_printf(char const *format, ...);
+size_t	ft_printf(char const *format, ...);
 int		ft_putchar(int c);
 int		ft_putstr(char *str);
 void	ft_putchar_fd(char c, int fd);
