@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 15:31:37 by jougarte          #+#    #+#             */
-/*   Updated: 2025/01/13 16:38:47 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:02:27 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	send_char_signal(char c, int server_pid)
 		{
 			kill(server_pid, SIGUSR2);
 		}
-		usleep(150);
+		usleep(1000);
 		i++;
 	}
 }
@@ -44,6 +44,7 @@ void	send_string(const char *str, int server_pid)
 		str++;
 	}
 	send_char_signal('\0', server_pid);
+	send_char_signal('\n', server_pid);
 }
 
 int	main(int argc, char **argv)
@@ -52,18 +53,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_putstr("Error: Debes pasar el PID del servidor y el mensaje.\n");
+		ft_printf("%s", "Debes pasar el PID del servidor y el mensaje.\n");
 		return (1);
 	}
 	server_pid = ft_atoi(argv[1]);
 	if (server_pid <= 0)
 	{
-		ft_putstr("Error: El PID del servidor debe ser un número mayor a 0.\n");
+		ft_printf("%s", "El PID del servidor debe ser un número mayor a 0.\n");
 		return (1);
 	}
 	if (ft_strlen(argv[2]) == 0)
 	{
-		ft_putstr("Error: El mensaje no puede estar vacío.\n");
+		ft_printf("%s", "El mensaje no puede estar vacío.\n");
 		return (1);
 	}
 	send_string(argv[2], server_pid);

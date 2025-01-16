@@ -6,13 +6,13 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:47:39 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 15:48:53 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:47:23 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
-int	ft_strlen( const char *str);
+size_t	ft_strlen( const char *str);
 
 int	ft_putstr(char *str)
 {

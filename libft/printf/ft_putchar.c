@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:43:31 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 12:48:43 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:45:57 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 int	ft_putchar(int c)
 {

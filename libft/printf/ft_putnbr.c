@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:47:12 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 12:42:07 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:46:25 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 int	ft_putnbr(int n)
 {

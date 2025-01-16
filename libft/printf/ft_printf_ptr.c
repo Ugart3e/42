@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:44:56 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/22 11:40:22 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:46:04 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 int	ft_ptr_len(uintptr_t num)
 {

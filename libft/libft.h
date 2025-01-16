@@ -6,15 +6,21 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:25 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/12 15:03:44 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/13 17:23:39 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE	42
+# endif
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdint.h>
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -50,5 +56,18 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int src);
 int		ft_toupper(int src);
+void	*ft_callocg(size_t count, size_t size);
+char	*ft_substrg(char *s, unsigned int start, size_t len);
+char	*ft_strchrg(char *s, int c);
+size_t	ft_strleng(char *s);
+char	*ft_strjoing(char *s1, char *s2);
+size_t	ft_printf(char const *format, ...);
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
+void	ft_putchar_fd(char c, int fd);
+int		ft_printf_ptr(uintptr_t ptr);
+int		ft_putnbr(int n);
+int		ft_printf_unsignedint(unsigned int num);
+int		ft_printf_hex(unsigned int nr, char *base);
 
 #endif

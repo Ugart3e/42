@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoing(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
@@ -40,7 +40,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_strleng(char *s)
 {
 	size_t	i;
 
@@ -52,7 +52,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchrg(char *s, int c)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substrg(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*res;
@@ -97,7 +97,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	return (res);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_callocg(size_t count, size_t size)
 {
 	unsigned char	*tmp;
 	size_t			i;

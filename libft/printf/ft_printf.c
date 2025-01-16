@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:37:26 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/21 12:56:40 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:46:15 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 static int	formatter(char format, va_list *args)
 {
@@ -33,7 +33,7 @@ static int	formatter(char format, va_list *args)
 	return (1);
 }
 
-int	ft_printf(char const *format, ...)
+size_t	ft_printf(char const *format, ...)
 {
 	va_list	args;
 	int		i;

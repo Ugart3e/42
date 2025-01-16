@@ -6,15 +6,15 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:48:07 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/19 14:59:47 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:48:28 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
-int	ft_strlen( const char *str)
+size_t	ft_strlen( const char *str)
 {
-	int	size;
+	size_t	size;
 
 	size = 0;
 	while (str && str[size])
