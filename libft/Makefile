@@ -36,7 +36,16 @@ LIBFT_SOURCES := ft_atoi.c \
                  ft_putnbr_fd.c \
                  ft_split.c \
                  ft_strmapi.c \
-                 ft_strtrim.c
+                 ft_strtrim.c \
+                 ft_lstadd_back.c \
+                 ft_lstadd_front.c \
+                 ft_lstclear.c \
+                 ft_lstdelone.c \
+			     ft_lstiter.c \
+                 ft_lstlast.c \
+                 ft_lstmap.c \
+                 ft_lstnew.c \
+                 ft_lstsize.c
 
 # Archivos fuente de ft_printf
 PRINTF_SOURCES := printf/ft_putchar.c \

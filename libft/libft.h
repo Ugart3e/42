@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:25 by jougarte          #+#    #+#             */
-/*   Updated: 2025/01/13 17:23:39 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:41:46 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdint.h>
+# include <string.h>
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}   t_list;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
@@ -69,5 +76,15 @@ int		ft_printf_ptr(uintptr_t ptr);
 int		ft_putnbr(int n);
 int		ft_printf_unsignedint(unsigned int num);
 int		ft_printf_hex(unsigned int nr, char *base);
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **alst, t_list *new);
+void	ft_add_back(t_list **alst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void*));
+void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstlast(t_list *lst);
+int	ft_lstsize(t_list *lst);
 
 #endif
