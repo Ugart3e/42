@@ -5,83 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:32:11 by jougarte          #+#    #+#             */
-/*   Updated: 2025/01/29 12:51:44 by jougarte         ###   ########.fr       */
+/*   Created: 2023/04/02 09:42:38 by utente            #+#    #+#             */
+/*   Updated: 2025/01/30 12:52:55 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+#include <limits.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-    long    num;
-    int     neg;
-    int     i;
+	long	num;
+	int		isneg;
+	int		i;
 
-    num = 0;
-    neg = 1;
-    i = 0;
-    while(str[i] && str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
-    if(str[i] == '+')
-      i++;
-    else if(str[i] == '-')
-    {
-        neg *= -1;
-        i++;
-    }  
-    while(str[i] >= '0' && str[i] <= '9')
-    {
-        num = (num * 10) + (str[i] - '0');
-        i++;
-    }
-    return (num * neg);
-        
+	num = 0;
+	isneg = 1;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		isneg *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = (num * 10) + (str[i] - '0');
+		i++;
+	}
+	return (num * isneg);
 }
 
-void    stack_init(t_list **a , char **argv, bool checker)
+void	stack_init(t_list **a, char **argv, bool flag_argc_2)
 {
-    long nbr;
-    while(*argv)
-    {
-        nbr = atol(*argv);
-        if (nbr > INT_MAX || nbr < INT_MIN)
-            error_free(a, argv, checker);
-        if (error_repetition(*a, (int)nbr))
-            error_free(a, argv, checker);
-        append_node(a, (int)nbr);
-        ++argv;
-        printf("%p pointer from main change only once when changing from NULL to 1", a);
-    }
-}
+	long	nbr;
+	int		i;
 
-void append_node(t_list **stack, int nbr)
-{
-    t_list *node;
-    t_list *last_node;
-    
-    if(NULL == stack)
-        return ;
-    node = malloc(sizeof(t_list));
-    if(NULL == node)
-        return ;
-    node -> next = NULL;
-    node -> value = nbr;
-    if(NULL == *stack)
-    {
-        *stack = node;
-        node -> prev = NULL;
-    }
-    else
-    {
-        last_node = find_last_node(*stack);
-        last_node->next = node;
-        node->prev = last_node;
-    }
+	i = 0;
+	while (argv[i])
+	{
+		if (error_syntax(argv[i]))
+			error_free(a, argv, flag_argc_2);
+		nbr = ft_atol(argv[i]);
+		if (nbr > INT_MAX || nbr < INT_MIN)
+			error_free(a, argv, flag_argc_2);
+		if (error_repetition(*a, (int)nbr))
+			error_free(a, argv, flag_argc_2);
+		append_node(a, (int)nbr);
+		++i;
+	}
+	if (flag_argc_2)
+		free_matrix(argv);
 }
-
-void error_free(t_list **a, char **argv, bool checker)
-{
-    exit(2);
-}
-
