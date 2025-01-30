@@ -6,11 +6,11 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 18:53:55 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:46:27 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:40:41 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "./push_swap.h"
 
 int	main(int argc, char **argv)
 {

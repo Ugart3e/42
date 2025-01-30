@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:42:38 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:52:55 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:51:46 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	stack_init(t_list **a, char **argv, bool flag_argc_2)
 	i = 0;
 	while (argv[i])
 	{
-		if (error_syntax(argv[i]))
-			error_free(a, argv, flag_argc_2);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			error_free(a, argv, flag_argc_2);

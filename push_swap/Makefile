@@ -6,34 +6,36 @@
 #    By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 12:54:06 by jougarte          #+#    #+#              #
-#    Updated: 2025/01/30 12:54:57 by jougarte         ###   ########.fr        #
+#    Updated: 2025/01/30 15:51:17 by jougarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 ARCHIVE = push_swap.a
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -O2 
+CFLAGS = -Wall -Werror -Wextra -g -O2
 MAKE_LIB = ar -rcs
 
-SRCS = $(wildcard *.c)
+# Archivos fuente en srcs/ y main en el directorio base
+SRCS_DIR = srcs
+SRCS = $(wildcard $(SRCS_DIR)/*.c) main.c
 OBJS = $(SRCS:.c=.o)
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(ARCHIVE)
-	$(CC) $< -o $@
+$(NAME): $(ARCHIVE)
+	$(CC) $(OBJS) -o $(NAME)
 
-$(ARCHIVE) : $(OBJS)
+$(ARCHIVE): $(OBJS)
 	$(MAKE_LIB) $(ARCHIVE) $^
 
-%.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-clean :
+clean:
 	rm -f $(OBJS) $(ARCHIVE)
 
-fclean : clean
+fclean: clean
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
