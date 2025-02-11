@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 09:49:59 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:53:19 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:29:20 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	append_node(t_list **stack, int nbr)
 
 t_list	*find_smallest(t_list *stack)
 {
-	long			smallest;
+	long	smallest;
 	t_list	*smallest_node;
 
 	if (NULL == stack)

@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:07:07 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:50:37 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:29:00 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	rotate(t_list **stack)
 {
 	t_list	*last_node;
-	int				len;
+	int		len;
 
 	len = stack_len(*stack);
 	if (NULL == stack || NULL == *stack || 1 == len)
@@ -26,7 +26,7 @@ static void	rotate(t_list **stack)
 	(*stack)->prev = NULL;
 	last_node->next->prev = last_node;
 	last_node->next->next = NULL;
-}	
+}
 
 void	ra(t_list **a, bool checker)
 {

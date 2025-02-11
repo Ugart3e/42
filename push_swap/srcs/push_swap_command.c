@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 11:47:02 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:46:27 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:26:27 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ void	finish_rotation(t_list **stack, t_list *top_node, char stack_name)
 				rb(stack, false);
 			else
 				rrb(stack, false);
-		}	
+		}
 	}
 }
-
 
 static void	move_nodes(t_list **a, t_list **b)
 {
@@ -72,7 +71,7 @@ static void	move_nodes(t_list **a, t_list **b)
 void	push_swap(t_list **a, t_list **b)
 {
 	t_list	*smallest;
-	int				len_a;
+	int		len_a;
 
 	len_a = stack_len(*a);
 	if (len_a == 5)

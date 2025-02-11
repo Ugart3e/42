@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 12:02:48 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:47:28 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:26:52 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_target_node(t_list *a,
 {
 	t_list	*current_a;
 	t_list	*target_node;
-	long			best_match_index;
+	long	best_match_index;
 
 	while (b)
 	{
@@ -87,7 +87,7 @@ void	set_price(t_list *a, t_list *b)
 
 void	set_cheapest(t_list *b)
 {
-	long			best_match_value;
+	long	best_match_value;
 	t_list	*best_match_node;
 
 	if (NULL == b)

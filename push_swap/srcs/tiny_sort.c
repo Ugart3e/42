@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 09:31:22 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:53:43 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:29:36 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	stack_sorted(t_list *stack)
 
 static t_list	*find_highest(t_list *stack)
 {
-	int				highest;
+	int		highest;
 	t_list	*highest_node;
 
 	if (NULL == stack)

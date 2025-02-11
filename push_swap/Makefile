@@ -6,7 +6,7 @@
 #    By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 12:54:06 by jougarte          #+#    #+#              #
-#    Updated: 2025/01/30 15:51:17 by jougarte         ###   ########.fr        #
+#    Updated: 2025/02/11 15:32:40 by jougarte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g -O2
 MAKE_LIB = ar -rcs
 
-# Archivos fuente en srcs/ y main en el directorio base
 SRCS_DIR = srcs
 SRCS = $(wildcard $(SRCS_DIR)/*.c) main.c
 OBJS = $(SRCS:.c=.o)

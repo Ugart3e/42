@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 10:24:35 by utente            #+#    #+#             */
-/*   Updated: 2025/01/30 12:50:25 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:27:10 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	reverse_rotate(t_list **stack)
 {
 	t_list	*last;
-	int				len;
+	int		len;
 
 	len = stack_len(*stack);
 	if (NULL == *stack || NULL == stack || 1 == len)

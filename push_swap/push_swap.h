@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 19:31:47 by jougarte          #+#    #+#             */
-/*   Updated: 2025/01/30 12:50:09 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:25:10 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 
 typedef struct s_list
 {
-	int			value;
-	int			current_position;
-	int			final_index;
-	int			push_price;
-	bool		above_median;
-	bool		cheapest;
+	int				value;
+	int				current_position;
+	int				final_index;
+	int				push_price;
+	bool			above_median;
+	bool			cheapest;
 	struct s_list	*target_node;
 	struct s_list	*prev;
 	struct s_list	*next;
-}   t_list;
+}	t_list;
 
 //*** Handle input
 char			**ft_split(char *str, char separator);
@@ -46,9 +46,9 @@ void			set_price(t_list *a, t_list *b);
 void			set_cheapest(t_list *b);
 //linked lists
 void			append_node(t_list **stack, int nbr);
-t_list	*find_last_node(t_list *head);
-t_list	*find_smallest(t_list *stack);
-t_list	*return_cheapest(t_list *stack);
+t_list			*find_last_node(t_list *head);
+t_list			*find_smallest(t_list *stack);
+t_list			*return_cheapest(t_list *stack);
 bool			stack_sorted(t_list *stack);
 int				stack_len(t_list *stack);
 void			finish_rotation(t_list **s, t_list *n, char c);
