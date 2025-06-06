@@ -3,29 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:27:05 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/12 15:08:29 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/10 19:12:59 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:54:31 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// Same as strchr, but with the last occurence of the character
 char	*ft_strrchr(const char *s, int c)
 {
-	const char	*last;
-	char		character;
+	int	i;
 
-	last = NULL;
-	character = (char)c;
-	while (*s)
+	i = ft_strlen(s);
+	while (i >= 0)
 	{
-		if (*s == character)
-			last = s;
-		s++;
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i--;
 	}
-	if (character == '\0')
-		return ((char *)s);
-	return ((char *)last);
+	return (0);
 }

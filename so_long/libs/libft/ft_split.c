@@ -3,105 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:30:00 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/12 14:54:01 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/30 11:31:46 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/21 18:24:04 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		word_count(const char *str, char c);
-static char		*fill_word(const char *str, int start, int end);
-static void		*ft_free(char **strs, int count);
-static void		ft_initiate_vars(size_t *i, int *j, int *s_word);
-
-char	**ft_split(const char *s, char c)
+//Frees memory in the heap
+static void	*free_mem(char **res, int j)
 {
-	char	**res;
-	size_t	i;
-	int		j;
-	int		s_word;
-
-	ft_initiate_vars(&i, &j, &s_word);
-	res = ft_calloc(word_count(s, c) + 1, sizeof(char *));
-	if (!res)
-		return (NULL);
-	while (i <= ft_strlen(s))
+	while (--j >= 0)
 	{
-		if (s[i] != c && s_word < 0)
-			s_word = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && s_word >= 0)
-		{
-			res[j] = fill_word(s, s_word, i);
-			if (!(res[j]))
-				return (ft_free(res, j));
-			s_word = -1;
-			j++;
-		}
-		i++;
+		free(res[j]);
 	}
-	return (res);
-}
-
-static void	ft_initiate_vars(size_t *i, int *j, int *s_word)
-{
-	*i = 0;
-	*j = 0;
-	*s_word = -1;
-}
-
-static void	*ft_free(char **strs, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
+	free(res);
 	return (NULL);
 }
 
-static char	*fill_word(const char *str, int start, int end)
+// Counts the number of substrings needed for the malloc
+static int	how_many(char const *s, char c)
 {
-	char	*word;
-	int		i;
+	int	i;
+	int	len;
+	int	word_check;
 
 	i = 0;
-	word = malloc((end - start + 1) * sizeof(char));
-	if (!word)
-		return (NULL);
-	while (start < end)
+	len = 0;
+	word_check = 0;
+	while (s[i])
 	{
-		word[i] = str[start];
+		if (s[i] != c && word_check == 0)
+		{
+			word_check = 1;
+			len++;
+		}
+		else if (s[i] == c)
+			word_check = 0;
 		i++;
-		start++;
 	}
-	word[i] = '\0';
-	return (word);
+	return (len);
 }
 
-static int	word_count(const char *str, char c)
+// Updates the position of start & end for the substrings
+static void	update_start_end(char const *s, char c, int *start, int *end)
 {
-	int	count;
-	int	x;
-
-	count = 0;
-	x = 0;
-	while (*str)
+	while (s[*start] == c)
 	{
-		if (*str != c && x == 0)
-		{
-			x = 1;
-			count++;
-		}
-		else if (*str == c)
-			x = 0;
-		str++;
+		*start += 1;
 	}
-	return (count);
+	*end = *start;
+	while (s[*end] && s[*end] != c)
+	{
+		*end += 1;
+	}
+}
+
+// Splits a string into substrings divided by a separator char
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+	int		start;
+	int		end;
+	int		j;
+
+	res = (char **)malloc(sizeof(char *) * (how_many(s, c) + 1));
+	if (!res || !s)
+		return (NULL);
+	start = 0;
+	end = 0;
+	j = 0;
+	while (s[start])
+	{
+		update_start_end(s, c, &start, &end);
+		if (start < end || s[end] == c)
+		{
+			res[j] = ft_substr(s, start, end - start);
+			if (!res[j])
+				return (free_mem(res, j), NULL);
+			start = end;
+			j++;
+		}
+	}
+	res[j] = NULL;
+	return (res);
 }

@@ -3,38 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:27:31 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:35:20 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/23 11:00:22 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/04 11:45:06 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// This function is capable of writing the total range of an int
 void	ft_putnbr_fd(int n, int fd)
 {
-	int	digit;
+	unsigned int	num;
 
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else if (n < 0)
+	if (n < 0)
 	{
-		write(fd, "-", 1);
+		ft_putchar_fd('-', fd);
 		n = -n;
-		ft_putnbr_fd(n, fd);
+	}
+	num = n;
+	if (num >= 10)
+	{
+		ft_putnbr_fd(num / 10, fd);
+		ft_putnbr_fd(num % 10, fd);
 	}
 	else
-	{
-		if (n > 9)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
-		}
-		else
-		{
-			digit = n + 48;
-			write(fd, &digit, 1);
-		}
-	}
+		ft_putchar_fd(num + '0', fd);
 }

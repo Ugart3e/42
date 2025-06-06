@@ -3,50 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 18:39:09 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:40:11 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/12 14:46:54 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:50:08 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+// Concatenates 'size' - 1 characters of src into dst
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	c1;
-	size_t	c2;
 	size_t	i;
+	size_t	j;
+	size_t	res;
 
-	c1 = 0;
-	c2 = 0;
 	i = 0;
-	while (dest[c1] != '\0')
-		c1++;
-	while (src[c2] != '\0')
-		c2++;
-	if (size <= c1)
-		return (size + c2);
-	while (src[i] != '\0' && (c1 + i) < (size - 1))
-	{
-		dest[c1 + i] = src[i];
+	j = 0;
+	res = 0;
+	while (dst[i] != '\0')
 		i++;
+	while (src[res] != '\0')
+		res++;
+	if (size <= i)
+		res += size;
+	else
+		res += i;
+	while (src[j] != '\0' && (i + 1) < size)
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
 	}
-	dest[c1 + i] = '\0';
-	return (c1 + c2);
+	dst[i] = '\0';
+	return (res);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-    char str[] = "Worldiouasd";
-    size_t siz = 2;
-    char dest[50] = "Hello ";
-    size_t tot;
-
-    tot = ft_strlcat(dest, str, siz);
-    printf("%s\n", dest);
-    printf("%zu\n", tot); // Usa %zu para imprimir size_t
-}
-*/

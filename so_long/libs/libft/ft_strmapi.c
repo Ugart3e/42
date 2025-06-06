@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 18:43:49 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:44:02 by jougarte         ###   ########.fr       */
+/*   Created: 2024/10/02 11:28:34 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:52:11 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+// Creates a new string result of applying a function through a string
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*res;
+	int		i;
+	char	*res;
 
-	if (!s)
-		return (NULL);
-	res = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (!res)
-		return (NULL);
 	i = 0;
-	while (i < ft_strlen(s))
+	res = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!res || !s)
+		return (NULL);
+	while (s[i])
 	{
 		res[i] = f(i, s[i]);
 		i++;

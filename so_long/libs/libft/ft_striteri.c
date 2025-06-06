@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 18:15:21 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:15:52 by jougarte         ###   ########.fr       */
+/*   Created: 2024/10/02 12:13:45 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:48:02 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+// Applies a function to every character of a string
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (s[i])

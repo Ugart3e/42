@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:10:29 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 20:11:01 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/12 16:38:47 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:42:34 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memchr(const void *s, int c, int n)
-{
-	int		i;
-	char	*string;
+#include "libft.h"
 
+// Scan memory for a specific character
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t				i;
+	const unsigned char	*str;
+
+	if (c == 0 && n == 0)
+		return (NULL);
+	str = (const unsigned char *)s;
 	i = 0;
-	string = (void *)s;
 	while (i < n)
 	{
-		if (string[i] == (char)c)
-			return (&string[i]);
+		if (str[i] == (unsigned char)c)
+			return ((void *)&str[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

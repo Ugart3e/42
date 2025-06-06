@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:25:12 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/07 20:25:30 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/11 15:04:54 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:44:56 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memset(void *ptr, int value, int num)
-{
-	unsigned char	*p;
+#include "libft.h"
 
-	p = (unsigned char *)ptr;
-	while (num--)
-		*p++ = (unsigned char)value;
-	return (ptr);
+// Fills memory with a predefined char 'n' times
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*str;
+
+	i = 0;
+	str = (unsigned char *)s;
+	while (i < n)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (s);
 }

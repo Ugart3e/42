@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:13:59 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/12 21:08:46 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/11 16:00:49 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:44:38 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+// Copies memory area
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*source;
-	char	*dest;
-	size_t	i;
+	size_t			i;
+	unsigned char	*char_dest;
+	unsigned char	*char_src;
 
-	if (!dst && !src)
+	if (dest == 0 && src == 0)
 		return (NULL);
-	source = (char *) src;
-	dest = (char *) dst;
-	i = 0;
-	if (dest > source)
-		while (len-- > 0)
-			dest[len] = source[len];
+	else if (dest < src)
+		ft_memcpy(dest, src, n);
 	else
 	{
-		while (i < len)
+		char_dest = (unsigned char *) dest;
+		char_src = (unsigned char *) src;
+		i = n;
+		while (i > 0)
 		{
-			dest[i] = source[i];
-			i++;
+			char_dest[i - 1] = char_src[i - 1];
+			i--;
 		}
 	}
-	return (dst);
+	return (dest);
 }

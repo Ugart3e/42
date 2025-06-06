@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:25:37 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:35:15 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/23 10:14:34 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/04 11:45:05 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

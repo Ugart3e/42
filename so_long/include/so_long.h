@@ -52,6 +52,10 @@ typedef struct s_map
 	mlx_t		*wind;
 }	t_map;
 
-int map_check(t_map *map);
+int	check_valid_chars_and_counts(t_map *map);
+int	check_rectangular(t_map *map);
+int	check_walls(t_map *map);
+void	ft_error(char *msg);
+int	check_path_validity(t_map *map);
 
 #endif

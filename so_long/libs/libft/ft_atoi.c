@@ -3,62 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 19:48:52 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 20:06:27 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/12 16:13:52 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/08 16:23:26 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+static void	check_before(const char *nptr, int *i, int *neg)
 {
-	int	neg;
-	int	i;
-	int	res;
-
-	neg = 1;
-	res = 0;
-	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	while ((nptr[*i] >= 9 && nptr[*i] <= 13) || nptr[*i] == 32)
+		(*i)++;
+	if (nptr[*i] == '+')
 	{
-		if (nptr[i] == '-')
-			neg = -1;
-		i++;
+		(*i)++;
 	}
-	while (nptr[i])
+	else if (nptr[*i] == '-')
 	{
-		if (ft_isdigit(nptr[i]))
-			res = (nptr[i] - 48) + (res * 10);
-		else
-			break ;
-		i++;
+		(*i)++;
+		(*neg)++;
 	}
-	return (res * neg);
 }
 
-/*
-int main()
+int	ft_atoi(const char *nptr)
 {
-	printf("ft_atoi: %d\n", ft_atoi("123456"));
-	printf("atoi: %d\n", atoi("123456"));
-	printf("ft_atoi: %d\n", ft_atoi("12Three45678"));
-	printf("atoi: %d\n", atoi("12Three45678"));
-	printf("ft_atoi: %d\n", ft_atoi("Hello World!"));
-	printf("atoi: %d\n", atoi("Hello World!"));
-	printf("ft_atoi: %d\n", ft_atoi("+42 BLAH!"));
-	printf("atoi: %d\n", atoi("+42 BLAH!"));
-	printf("ft_atoi: %d\n", ft_atoi("-42"));
-	printf("atoi: %d\n", atoi("-42"));
-	printf("ft_atoi: %d\n", ft_atoi("	 +42"));
-	printf("atoi: %d\n", atoi("	 +42"));
-	printf("ft_atoi: %d\n", ft_atoi("\t\n\v\f\r 42"));
-	printf("atoi: %d\n", atoi("\t\n\v\f\r 42"));
-	printf("ft_atoi: %d\n", ft_atoi("5"));
-	printf("atoi: %d\n", atoi("5"));
-	printf("atoi: %d\n", atoi("-+--+-42"));
-	return 0;
-}*/
+	int	i;
+	int	neg;
+	int	res;
+
+	i = 0;
+	neg = 0;
+	res = 0;
+	if (nptr[i] == 0)
+		return (0);
+	check_before(nptr, &i, &neg);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	if (neg == 1)
+		res = -res;
+	return (res);
+}
+
+/* int	main(void)
+{
+	char	*n = "\t\v\f\r\n \f-06050";
+	int		i1 = atoi(n);
+	int		i2 = ft_atoi(n);
+
+	printf("%d\n", i1);
+	printf("%d\n", i2);
+} */

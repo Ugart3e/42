@@ -3,110 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 11:38:11 by jougarte          #+#    #+#             */
-/*   Updated: 2024/11/11 11:48:22 by jougarte         ###   ########.fr       */
+/*   Created: 2024/11/11 10:48:57 by samperez          #+#    #+#             */
+/*   Updated: 2025/03/24 15:39:15 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_strjoing(char *s1, char *s2)
+// Duplicates a string
+char	*ft_gnl_strdup(char *s)
 {
-	char	*str;
-	size_t	i;
-	size_t	c;
-
-	if (!s1)
-	{
-		s1 = malloc(sizeof(char) + 1);
-		if (!s1)
-			return (0);
-		s1[0] = 0;
-	}
-	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!str)
-		return (0);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	c = -1;
-	while (s2[++c])
-		str[i + c] = s2[c];
-	str[i + c] = '\0';
-	free(s1);
-	free(s2);
-	return (str);
-}
-
-size_t	ft_strleng(char *s)
-{
-	size_t	i;
+	char			*res;
+	unsigned int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strchrg(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return (&((char *)s)[i]);
-		i++;
-	}
-	if ((char)c == '\0')
-		return (&((char *)s)[i]);
-	return (0);
-}
-
-char	*ft_substrg(char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*res;
-	size_t	strl;
-
-	strl = ft_strlen(s);
-	i = 0;
-	if (!s)
-		return (0);
-	if (start > strl)
-	{
-		res = malloc(sizeof(char) * (1));
-		if (!res)
-			return (NULL);
-		res[0] = '\0';
-		return (res);
-	}
-	if (strl - start < len)
-		len = strl - start;
-	res = malloc(sizeof(char) * (len + 1));
+	res = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!res)
-		return (NULL);
-	while (start < strl && i < len && s[start])
-		res[i++] = s[start++];
+		return (free_memory(&res));
+	while (s[i] != 0)
+	{
+		res[i] = s[i];
+		i++;
+	}
 	res[i] = '\0';
 	return (res);
 }
 
-void	*ft_callocg(size_t count, size_t size)
+// Scans a string for a character
+int	ft_gnl_strchr(char *s, int c)
 {
-	unsigned char	*tmp;
-	size_t			i;
+	int	i;
 
 	i = 0;
-	tmp = malloc(count * size);
-	if (!tmp)
+	if (!s)
+		return (-1);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i++;
+	}
+	if ((char)c == '\0')
+		return (i);
+	return (-1);
+}
+
+char	*ft_gnl_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	char	*result;
+	int		len_s1;
+	int		len_s2;
+
+	if (s1)
+		len_s1 = ft_strlen((char *)s1);
+	else
+		len_s1 = 0;
+	len_s2 = ft_strlen((char *)s2);
+	i = len_s1 + len_s2;
+	result = (char *)malloc(sizeof(char) * i + 1);
+	if (!result)
+		return (free_memory((char **)(&s1)));
+	i = -1;
+	while (++i < len_s1)
+		result[i] = s1[i];
+	i = -1;
+	while (++i < len_s2)
+		result[i + len_s1] = s2[i];
+	result[i + len_s1] = '\0';
+	free_memory((char **)(&s1));
+	return (result);
+}
+
+// This function returns a NULL terminated substring of "s"
+char	*ft_gnl_substr(char *s, unsigned int start, size_t len)
+{
+	char			*sub_s;
+	size_t			i;
+	unsigned int	s_len;
+
+	i = 0;
+	if (!s)
 		return (NULL);
-	while (i < count * size)
-		tmp[i++] = 0;
-	return (tmp);
+	s_len = (unsigned int)ft_strlen((char *)s);
+	if (start >= s_len)
+		return (ft_gnl_strdup(""));
+	if (start + len > s_len)
+		len = s_len - start;
+	sub_s = (char *)malloc(sizeof(char) * len + 1);
+	if (!sub_s)
+		return (free_memory(&sub_s));
+	while (i < (unsigned int)len)
+	{
+		sub_s[i] = s[start + i];
+		i++;
+	}
+	sub_s[i] = '\0';
+	return (sub_s);
 }

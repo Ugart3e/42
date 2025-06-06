@@ -3,88 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 20:01:02 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/14 12:19:02 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/25 11:09:06 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:41:43 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* static int	int_len(long nbr);
-static char	*pre_conv(int len);
-static char	*handle_zero(char *result);
-static void	fill_result(char *result, long nbr, int len); */
-
-static char	*handle_zero(char *result)
+// Counts how many bytes needed for malloc
+static int	count_digits(long int n)
 {
-	result[0] = '0';
-	result[1] = '\0';
-	return (result);
-}
+	int	len;
 
-static void	fill_result(char *result, long nbr, int len)
-{
-	int	i;
-
-	i = len - 1;
-	while (nbr != 0)
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		result[i--] = (nbr % 10) + '0';
-		nbr /= 10;
+		n = n / 10;
+		len ++;
 	}
-	result[len] = '\0';
+	return (len);
 }
 
-static char	*pre_conv(int len)
+static void	*int_to_string(char *s, long int n, int is_negative)
 {
-	char	*tmp;
+	char	tmp;
+	int		i;
 
-	tmp = malloc((len + 1) * sizeof(char));
-	if (!tmp)
+	i = count_digits(n) - 1;
+	if (is_negative == 1)
+	{
+		s[0] = '-';
+		i++;
+		s[count_digits(n) + 1] = '\0';
+	}
+	else
+		s[count_digits(n)] = '\0';
+	tmp = 0;
+	while (n > 0)
+	{
+		tmp = (n % 10) + '0';
+		n /= 10;
+		s[i] = tmp;
+		i--;
+	}
+	return (s);
+}
+
+// Special 0 case
+static void	*handle_zero(char **s)
+{
+	*s = malloc(2);
+	if (!*s)
 		return (NULL);
-	return (tmp);
-}
-
-static int	int_len(long nbr)
-{
-	int	count;
-
-	count = 0;
-	if (nbr < 0)
-	{
-		count++;
-		nbr = -nbr;
-	}
-	if (nbr == 0)
-		count++;
-	while (nbr != 0)
-	{
-		nbr /= 10;
-		count++;
-	}
-	return (count);
+	(*s)[0] = '0';
+	(*s)[1] = '\0';
+	return (s);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nbr;
-	int		len;
-	char	*result;
+	char		*s;
+	long int	num;
+	int			is_negative;
 
-	nbr = n;
-	len = int_len(nbr);
-	result = pre_conv(len);
-	if (!result)
-		return (NULL);
-	if (nbr == 0)
-		return (handle_zero(result));
-	if (n < 0)
+	num = (long int) n;
+	is_negative = 0;
+	if (num < 0)
 	{
-		nbr = -nbr;
-		result[0] = '-';
+		is_negative++;
+		num *= -1;
 	}
-	fill_result(result, nbr, len);
-	return (result);
+	if (num == 0)
+	{
+		handle_zero(&s);
+		return (s);
+	}
+	if (is_negative)
+		s = malloc(sizeof(char) * count_digits(num) + 2);
+	else
+		s = malloc(sizeof(char) * count_digits(num) + 1);
+	if (!s)
+		return (NULL);
+	s = int_to_string(s, num, is_negative);
+	return (s);
 }

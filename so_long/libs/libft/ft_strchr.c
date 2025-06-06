@@ -3,25 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 18:08:48 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/12 15:03:19 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/10 19:12:59 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:47:29 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// Scans a string for a character
 char	*ft_strchr(const char *s, int c)
 {
-	char	character;
+	int	i;
 
-	character = (char)c;
-	while (*s != character)
+	i = 0;
+	while ((char)s[i])
 	{
-		if (*s == '\0')
-			return (NULL);
+		if (*s == (char)c)
+			return (&((char *)s)[i]);
 		s++;
 	}
-	return ((char *)s);
+	if ((char)c == '\0')
+		return (&((char *)s)[i]);
+	return (0);
 }

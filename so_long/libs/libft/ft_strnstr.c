@@ -3,31 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:24:23 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:26:52 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/12 16:02:35 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:53:44 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+// Scans a string for a substring
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	j;
+	size_t	swp;
 
-	if (!*needle)
-		return ((char *)haystack);
 	i = 0;
-	while (haystack[i] && i < len)
+	if (!(little[0]))
+		return ((char *)big);
+	while (big[i] && i < len)
 	{
 		j = 0;
-		while (haystack[i + j] == needle[j] && (i + j) < len && needle[j])
+		swp = i;
+		while (big[i] == little[j] && big[i] && i < len)
+		{
 			j++;
-		if (!needle[j])
-			return ((char *)&haystack[i]);
-		i++;
+			i++;
+		}
+		if (little[j] == 0)
+			return ((char *)&big[swp]);
+		i = swp + 1;
 	}
 	return (NULL);
 }
+
+/*
+int    main(void)
+{
+    char    little[] = "hola";
+    char    big[] = "Samuel hola";
+    char    *own_ptr;
+
+    own_ptr = ft_strnstr(big, little, 11);
+}
+*/

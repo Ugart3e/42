@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 19:50:37 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 18:34:45 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/11 15:50:08 by samperez          #+#    #+#             */
+/*   Updated: 2024/10/10 18:40:40 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+	//Same as memset, just with null characters
 void	ft_bzero(void *s, size_t n)
 {
-	char	*tmp_ptr;
-
-	tmp_ptr = (char *) s;
-	while (n > 0)
-	{
-		*(tmp_ptr++) = 0;
-		n--;
-	}
+	ft_memset(s, 0, n);
 }

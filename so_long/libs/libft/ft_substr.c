@@ -3,35 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: samperez <samperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:31:35 by jougarte          #+#    #+#             */
-/*   Updated: 2024/10/09 19:40:12 by jougarte         ###   ########.fr       */
+/*   Created: 2024/09/23 12:25:21 by samperez          #+#    #+#             */
+/*   Updated: 2024/11/15 15:46:45 by samperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+// This function returns a NULL terminated substring of "s"
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t		cont;
-	char		*temp;
+	char			*sub_s;
+	size_t			i;
+	unsigned int	s_len;
 
-	temp = (char *)s;
+	i = 0;
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
+	s_len = (unsigned int)ft_strlen((char *)s);
+	if (start >= s_len)
 		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	temp = ft_calloc(len + 1, sizeof(char));
-	if (!temp)
+	if (start + len > s_len)
+		len = s_len - start;
+	sub_s = malloc(len + 1);
+	if (!sub_s)
 		return (NULL);
-	cont = 0;
-	while (cont < len)
+	while (i < (unsigned int)len)
 	{
-		temp[cont] = s[start + cont];
-		cont++;
+		sub_s[i] = s[start + i];
+		i++;
 	}
-	return ((char *)temp);
+	sub_s[i] = '\0';
+	return (sub_s);
 }
