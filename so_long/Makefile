@@ -1,40 +1,52 @@
 NAME = so_long
 
-# Archivos fuente
+# Directorios
 SRCDIR = src
+LIBFTDIR = libs/libft
+MLXDIR = libs/MLX42
+
+# Archivos fuente y objetos
 SRC = $(wildcard $(SRCDIR)/*.c)
 OBJ = $(SRC:.c=.o)
 
 # Includes
-INCLUDES = -Iinclude -Ilibs/MLX42/include
+INCLUDES = -Iinclude -I$(MLXDIR)/include -I$(LIBFTDIR)
 
 # Librerías necesarias
-LIBMLX42 = libs/MLX42/build/libmlx42.a
-LIBS = -Llibs/MLX42/build -lmlx42 $(shell pkg-config --libs glfw3) -ldl -lm \
-        -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+LIBMLX42 = $(MLXDIR)/build/libmlx42.a
+LIBFT = $(LIBFTDIR)/libft.a
+
+LIBS = $(LIBFT) -L$(MLXDIR)/build -lmlx42 $(shell pkg-config --libs glfw3) \
+       -ldl -lm -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
 
 # Compilador y flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror $(INCLUDES)
 
 # Regla por defecto
-all: $(LIBMLX42) $(NAME)
+all: $(LIBMLX42) $(LIBFT) $(NAME)
 
-# Compilar el ejecutable
+# Ejecutable
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
-# Compilar MLX42 si no está ya compilado
+# Compilar MLX42
 $(LIBMLX42):
-	@cmake -B libs/MLX42/build -S libs/MLX42 -DMLX42_BUILD_EXAMPLES=OFF
-	@cmake --build libs/MLX42/build
+	@cmake -B $(MLXDIR)/build -S $(MLXDIR) -DMLX42_BUILD_EXAMPLES=OFF
+	@cmake --build $(MLXDIR)/build
 
-# Regla de limpieza
+# Compilar libft
+$(LIBFT):
+	@make -C $(LIBFTDIR)
+
+# Limpiar objetos
 clean:
 	rm -f $(OBJ)
+	make clean -C $(LIBFTDIR)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIBFTDIR)
 
 re: fclean all
 

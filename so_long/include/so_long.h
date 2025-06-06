@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "../libs/libft/src/libft.h"
 # include "../libs/MLX42/include/MLX42/MLX42.h"
+# include "../libs/libft/libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -51,3 +51,7 @@ typedef struct s_map
 	int			null_check;
 	mlx_t		*wind;
 }	t_map;
+
+int map_check(t_map *map);
+
+#endif

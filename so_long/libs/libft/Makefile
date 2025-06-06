@@ -43,6 +43,7 @@ LIBFT_SOURCES := ft_atoi.c \
                  ft_lstdelone.c \
 			     ft_lstiter.c \
                  ft_lstlast.c \
+                 ft_strcmp.c \
                  ft_lstmap.c \
                  ft_lstnew.c \
                  ft_lstsize.c
