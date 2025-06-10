@@ -24,32 +24,37 @@ void	find_player_position(t_map *game)
 
 int	is_valid_move(t_map *game, int new_x, int new_y)
 {
+    // Verificar límites del mapa
     if (new_x < 0 || new_x >= game->width || new_y < 0 || new_y >= game->height)
         return (0);
+    
+    // No se puede mover a una pared
     if (game->map[new_y][new_x] == '1')
         return (0);
+    
+    // No se puede entrar a la salida si aún hay coleccionables
     if (game->map[new_y][new_x] == 'E' && game->coin_c > 0)
         return (0);
-    return (1);
+    
+    return (1);  // Movimiento válido
 }
 
 void move_player(t_map *game, int new_x, int new_y)
 {
+    // ✅ PRIMERO: Verificar si el movimiento es válido
+    if (!is_valid_move(game, new_x, new_y))
+        return;  // Si no es válido, no hacer nada
+    
     // Borrar la imagen anterior del jugador
     mlx_image_to_window(game->mlx, game->img.ti_i, game->p.x * TILE_SIZE, game->p.y * TILE_SIZE);
     
-    // Actualizar la posición del jugador en el mapa
-    game->map[game->p.y][game->p.x] = '0';
-    game->p.x = new_x;
-    game->p.y = new_y;
-    
-    // Verificar si hay un coleccionable en la nueva posición
+    // Verificar si hay un coleccionable en la nueva posición ANTES de mover
     if (game->map[new_y][new_x] == 'C')
     {
         game->coin_c--;
         ft_printf("Coleccionables restantes: %d\n", game->coin_c);
         
-        // ✅ CAMBIAR: Usar size_t en lugar de int
+        // Deshabilitar la imagen del coleccionable
         size_t i = 0;
         while (i < game->img.collect_i->count)
         {
@@ -63,7 +68,18 @@ void move_player(t_map *game, int new_x, int new_y)
         }
     }
     
-    // Actualizar el mapa con la nueva posición del jugador
+    // Verificar si el jugador llegó a la salida con todos los coleccionables
+    if (game->map[new_y][new_x] == 'E' && game->coin_c == 0)
+    {
+        ft_printf("¡Felicidades! Has completado el nivel en %d movimientos.\n", game->moves + 1);
+        mlx_close_window(game->mlx);
+        return;  // Salir de la función para evitar seguir procesando
+    }
+    
+    // Actualizar la posición del jugador en el mapa
+    game->map[game->p.y][game->p.x] = '0';
+    game->p.x = new_x;
+    game->p.y = new_y;
     game->map[new_y][new_x] = 'P';
     
     // Dibujar el jugador en la nueva posición
@@ -78,13 +94,6 @@ void move_player(t_map *game, int new_x, int new_y)
     {
         ft_printf("¡Todos los coleccionables recogidos! Ahora puedes salir.\n");
     }
-    
-    // Verificar si el jugador llegó a la salida con todos los coleccionables
-    if (game->map[new_y][new_x] == 'E' && game->coin_c == 0)
-    {
-        ft_printf("¡Felicidades! Has completado el nivel en %d movimientos.\n", game->moves);
-        mlx_close_window(game->mlx);
-    }
 }
 
 void key_hook(mlx_key_data_t keydata, void *param)
@@ -96,14 +105,23 @@ void key_hook(mlx_key_data_t keydata, void *param)
     
     if (keydata.action == MLX_PRESS)
     {
+        // ✅ Calcular nueva posición según la tecla presionada
+        int new_x = game->p.x;
+        int new_y = game->p.y;
+        
         if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
-            move_player(game, game->p.x, game->p.y - 1);
+            new_y--;
         else if (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-            move_player(game, game->p.x, game->p.y + 1);
+            new_y++;
         else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT)
-            move_player(game, game->p.x - 1, game->p.y);
+            new_x--;
         else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
-            move_player(game, game->p.x + 1, game->p.y);
+            new_x++;
+        else
+            return;  // Si no es una tecla de movimiento, no hacer nada
+        
+        // Intentar mover al jugador (la validación se hace dentro de move_player)
+        move_player(game, new_x, new_y);
     }
 }
 
