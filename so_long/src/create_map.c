@@ -45,13 +45,6 @@ void	load_images(t_map *game)
     if (!game->img.wall_i || !game->img.ti_i || !game->img.p_i ||
         !game->img.collect_i || !game->img.exit_c_i)
         ft_error("Error\nNo se pudieron crear las imágenes\n");
-    
-    // Liberar texturas después de convertirlas (opcional)
-    mlx_delete_texture(game->img.wall);
-    mlx_delete_texture(game->img.tile);
-    mlx_delete_texture(game->img.p);
-    mlx_delete_texture(game->img.coll);
-    mlx_delete_texture(game->img.exit_c);
 }
 
 void	init_map(t_map *game)

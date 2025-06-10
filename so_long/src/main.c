@@ -45,6 +45,20 @@ int	check_ber_extension(char *filename)
 	return (ft_strncmp(filename + len - 4, ".ber", 4) == 0);
 }
 
+void cleanup_game(t_map *game)
+{
+    if (game->img.wall)
+        mlx_delete_texture(game->img.wall);
+    if (game->img.tile)
+        mlx_delete_texture(game->img.tile);
+    if (game->img.p)
+        mlx_delete_texture(game->img.p);
+    if (game->img.coll)
+        mlx_delete_texture(game->img.coll);
+    if (game->img.exit_c)
+        mlx_delete_texture(game->img.exit_c);
+}
+
 int	main(int ac, char **av)
 {
     t_map map;
@@ -78,6 +92,10 @@ int	main(int ac, char **av)
         ft_memset(&map.img, 0, sizeof(t_img));
         ft_memset(&map.p, 0, sizeof(t_player));
         
+        // ✅ AGREGAR estas inicializaciones:
+        map.coin_c = map.coin;  // Inicializar contador de monedas
+        map.moves = 0;          // Inicializar contador de movimientos
+        
         // Inicializar MLX
         map.mlx = mlx_init(map.width * TILE_SIZE, map.height * TILE_SIZE, "so_long", true);
         if (!map.mlx)
@@ -95,6 +113,7 @@ int	main(int ac, char **av)
         mlx_loop(map.mlx);
         
         // Esto solo se ejecuta cuando se cierra la ventana
+        cleanup_game(&map);  // ✅ AGREGAR limpieza
         mlx_terminate(map.mlx);
     }
     else

@@ -77,5 +77,6 @@ int	check_rectangular(t_map *map);
 int	check_walls(t_map *map);
 void	ft_error(char *msg);
 int	check_path_validity(t_map *map);
+void	cleanup_game(t_map *game);  // ✅ AGREGAR esta función
 
 #endif
