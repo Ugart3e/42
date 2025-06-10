@@ -33,33 +33,58 @@ int	is_valid_move(t_map *game, int new_x, int new_y)
     return (1);
 }
 
-void	move_player(t_map *game, int new_x, int new_y)
+void move_player(t_map *game, int new_x, int new_y)
 {
-    if (!is_valid_move(game, new_x, new_y))
-        return ;
+    // Borrar la imagen anterior del jugador
+    mlx_image_to_window(game->mlx, game->img.ti_i, game->p.x * TILE_SIZE, game->p.y * TILE_SIZE);
     
-    if (game->map[new_y][new_x] == 'C')
-    {
-        game->coin_c--;
-        game->map[new_y][new_x] = '0';
-    }
-    
-    if (game->map[new_y][new_x] == 'E' && game->coin_c == 0)
-    {
-        mlx_close_window(game->mlx);
-        return ;
-    }
-    
-    // Usar el índice correcto del jugador guardado en create_map
-    game->img.p_i->instances[game->p.player_instance].x = new_x * TILE_SIZE;
-    game->img.p_i->instances[game->p.player_instance].y = new_y * TILE_SIZE;
-    
-    // Actualizar posición lógica
+    // Actualizar la posición del jugador en el mapa
+    game->map[game->p.y][game->p.x] = '0';
     game->p.x = new_x;
     game->p.y = new_y;
     
+    // Verificar si hay un coleccionable en la nueva posición
+    if (game->map[new_y][new_x] == 'C')
+    {
+        game->coin_c--;
+        ft_printf("Coleccionables restantes: %d\n", game->coin_c);
+        
+        // ✅ CAMBIAR: Usar size_t en lugar de int
+        size_t i = 0;
+        while (i < game->img.collect_i->count)
+        {
+            if (game->img.collect_i->instances[i].x == new_x * TILE_SIZE && 
+                game->img.collect_i->instances[i].y == new_y * TILE_SIZE)
+            {
+                game->img.collect_i->instances[i].enabled = false;
+                break;
+            }
+            i++;
+        }
+    }
+    
+    // Actualizar el mapa con la nueva posición del jugador
+    game->map[new_y][new_x] = 'P';
+    
+    // Dibujar el jugador en la nueva posición
+    mlx_image_to_window(game->mlx, game->img.p_i, new_x * TILE_SIZE, new_y * TILE_SIZE);
+    
+    // Incrementar contador de movimientos
     game->moves++;
-    ft_printf("Movimientos: %d\n", game->moves);  // Debug
+    ft_printf("Movimientos: %d\n", game->moves);
+    
+    // Verificar si se han recogido todos los coleccionables
+    if (game->coin_c == 0)
+    {
+        ft_printf("¡Todos los coleccionables recogidos! Ahora puedes salir.\n");
+    }
+    
+    // Verificar si el jugador llegó a la salida con todos los coleccionables
+    if (game->map[new_y][new_x] == 'E' && game->coin_c == 0)
+    {
+        ft_printf("¡Felicidades! Has completado el nivel en %d movimientos.\n", game->moves);
+        mlx_close_window(game->mlx);
+    }
 }
 
 void key_hook(mlx_key_data_t keydata, void *param)
