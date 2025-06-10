@@ -66,6 +66,9 @@ int	main(int ac, char **av)
 
     if (ac == 2 && check_ber_extension(av[1]))
     {
+        // ✅ INICIALIZAR la estructura completa al principio
+        ft_memset(&map, 0, sizeof(t_map));
+        
         read_map(&map, av[1]);
         i = 0;
         while (map.map[i])
@@ -73,6 +76,8 @@ int	main(int ac, char **av)
             ft_printf("%s\n", map.map[i]);
             i++;
         }
+        
+        // Las validaciones necesitan que estas variables estén inicializadas
         if (!check_valid_chars_and_counts(&map))
             ft_error("Error\nCaracter inválido en el mapa\n");
         if (map.p_num != 1)
@@ -88,13 +93,9 @@ int	main(int ac, char **av)
         if (!check_path_validity(&map))
             ft_error("Error\nNo hay un camino válido a todas las monedas y a la salida\n");
     
-        // Inicializar estructuras antes de MLX
-        ft_memset(&map.img, 0, sizeof(t_img));
-        ft_memset(&map.p, 0, sizeof(t_player));
-        
-        // ✅ AGREGAR estas inicializaciones:
-        map.coin_c = map.coin;  // Inicializar contador de monedas
-        map.moves = 0;          // Inicializar contador de movimientos
+        // ✅ INICIALIZAR contador de monedas DESPUÉS de las validaciones
+        map.coin_c = map.coin;  // Ahora map.coin ya tiene el valor correcto
+        map.moves = 0;
         
         // Inicializar MLX
         map.mlx = mlx_init(map.width * TILE_SIZE, map.height * TILE_SIZE, "so_long", true);
@@ -102,6 +103,11 @@ int	main(int ac, char **av)
             ft_error("Error\nNo se pudo inicializar MLX\n");
     
         create_map(&map);
+        
+        // ✅ AGREGAR: Encontrar la posición inicial del jugador
+        find_player_position(&map);
+        
+        ft_printf("Jugador en posición: (%d, %d)\n", map.p.x, map.p.y); // Debug
         
         ft_printf("Registrando callbacks...\n"); // Debug
         // Registrar callbacks para mantener la ventana activa
@@ -113,7 +119,7 @@ int	main(int ac, char **av)
         mlx_loop(map.mlx);
         
         // Esto solo se ejecuta cuando se cierra la ventana
-        cleanup_game(&map);  // ✅ AGREGAR limpieza
+        cleanup_game(&map);
         mlx_terminate(map.mlx);
     }
     else

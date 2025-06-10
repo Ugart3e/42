@@ -2,9 +2,9 @@
 
 void	find_player_position(t_map *game)
 {
-    int x, y;
+    int y = 0;
+    int x = 0;
     
-    y = 0;
     while (y < game->height)
     {
         x = 0;
@@ -14,7 +14,7 @@ void	find_player_position(t_map *game)
             {
                 game->p.x = x;
                 game->p.y = y;
-                return ;
+                return;
             }
             x++;
         }
