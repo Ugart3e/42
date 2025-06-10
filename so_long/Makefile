@@ -5,9 +5,9 @@ SRCDIR = src
 LIBFTDIR = libs/libft
 MLXDIR = libs/MLX42
 
-# Archivos fuente y objetos
-SRC = $(wildcard $(SRCDIR)/*.c)
-OBJ = $(SRC:.c=.o)
+# Archivos fuente y objetos (corregir con los archivos que realmente tienes)
+SRCS = src/main.c src/check_path.c src/map_check.c src/create_map.c src/movement.c src/window.c
+OBJ = $(SRCS:.c=.o)
 
 # Includes
 INCLUDES = -Iinclude -I$(MLXDIR)/include -I$(LIBFTDIR)
@@ -17,8 +17,7 @@ LIBMLX42 = $(MLXDIR)/build/libmlx42.a
 LIBFT = $(LIBFTDIR)/libft.a
 
 LIBS = $(LIBFT) -L$(MLXDIR)/build -lmlx42 $(shell pkg-config --libs glfw3) \
-		-Iinclude -ldl -lglfw -pthread -lm
-       # MAC -ldl -lm -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo 
+       -ldl -lm -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo 
 
 # Compilador y flags
 CC = cc
