@@ -5,8 +5,8 @@ SRCDIR = src
 LIBFTDIR = libs/libft
 MLXDIR = libs/MLX42
 
-# Archivos fuente y objetos (corregir con los archivos que realmente tienes)
-SRCS = src/main.c src/check_path.c src/map_check.c src/create_map.c src/movement.c src/window.c
+# ✅ CORREGIR: Archivos que realmente existen
+SRCS = src/main.c src/check_path.c src/map_check.c src/map_utils.c src/create_map.c src/movement.c src/player_utils.c src/window.c
 OBJ = $(SRCS:.c=.o)
 
 # Includes
@@ -52,6 +52,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C $(LIBFTDIR)
+	rm -rf $(MLXDIR)/build
 
 re: fclean all
 

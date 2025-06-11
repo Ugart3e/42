@@ -1,75 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 17:00:45 by jougarte          #+#    #+#             */
+/*   Updated: 2025/06/11 17:08:33 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
-#include <stdlib.h>
 
-// Copiar el mapa para no modificar el original
-static char **copy_map(char **map, int height, int width)
+static void	dfs(int y, int x, struct s_dfs_args *args)
 {
-	char **copy = malloc(sizeof(char *) * (height + 1));
-	if (!copy)
-		return NULL;
+	if (y < 0 || x < 0 || y >= args->height || x >= args->width)
+		return ;
+	if (args->map[y][x] == '1' || args->map[y][x] == 'V')
+		return ;
+	if (args->map[y][x] == 'C')
+		args->coins_reached++;
+	if (args->map[y][x] == 'E')
+		args->exit_reached = 1;
+	args->map[y][x] = 'V';
+	dfs(y + 1, x, args);
+	dfs(y - 1, x, args);
+	dfs(y, x + 1, args);
+	dfs(y, x - 1, args);
+}
 
-	for (int i = 0; i < height; i++)
+static char	*copy_row(char *row, int width)
+{
+	char	*copy;
+	int		i;
+
+	copy = malloc(sizeof(char) * (width + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < width)
 	{
-		copy[i] = malloc(sizeof(char) * (width + 1));
+		copy[i] = row[i];
+		i++;
+	}
+	copy[width] = '\0';
+	return (copy);
+}
+
+static char	**create_map_copy(char **map, int height, int width)
+{
+	char	**copy;
+	int		i;
+
+	copy = malloc(sizeof(char *) * (height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		copy[i] = copy_row(map[i], width);
 		if (!copy[i])
 		{
 			while (i-- > 0)
 				free(copy[i]);
 			free(copy);
-			return NULL;
+			return (NULL);
 		}
-		for (int j = 0; j < width; j++)
-			copy[i][j] = map[i][j];
-		copy[i][width] = '\0';
+		i++;
 	}
 	copy[height] = NULL;
-	return copy;
+	return (copy);
 }
 
-// DFS para marcar las posiciones accesibles
-static void	dfs(char **map, int y, int x, int height, int width, int *coins_reached, int *exit_reached)
+static void	free_map_copy(char **map_copy, int height)
 {
-	if (y < 0 || x < 0 || y >= height || x >= width)
-		return;
-	if (map[y][x] == '1' || map[y][x] == 'V')
-		return;
+	int	i;
 
-	if (map[y][x] == 'C')
-		(*coins_reached)++;
-	if (map[y][x] == 'E')
-		(*exit_reached) = 1;
-
-	map[y][x] = 'V';
-
-	dfs(map, y + 1, x, height, width, coins_reached, exit_reached);
-	dfs(map, y - 1, x, height, width, coins_reached, exit_reached);
-	dfs(map, y, x + 1, height, width, coins_reached, exit_reached);
-	dfs(map, y, x - 1, height, width, coins_reached, exit_reached);
+	i = 0;
+	while (i < height)
+	{
+		free(map_copy[i]);
+		i++;
+	}
+	free(map_copy);
 }
 
 int	check_path_validity(t_map *map)
 {
-	int		coins_reached = 0;
-	int		exit_reached = 0;
-	int		start_y = map->p.y;
-	int		start_x = map->p.x;
-	char	**map_copy;
+	struct s_dfs_args	args;
+	char				**map_copy;
 
-	map_copy = copy_map(map->map, map->height, map->width);
+	map_copy = create_map_copy(map->map, map->height, map->width);
 	if (!map_copy)
 	{
-		ft_putstr_fd("Error\nNo se pudo reservar memoria para verificar camino\n", 2);
+		ft_putstr_fd("Error\nNo se pudo reservar memoria para el camino\n", 2);
 		exit(EXIT_FAILURE);
 	}
-
-	dfs(map_copy, start_y, start_x, map->height, map->width, &coins_reached, &exit_reached);
-
-	for (int i = 0; i < map->height; i++)
-		free(map_copy[i]);
-	free(map_copy);
-
-	if (coins_reached != map->coin || exit_reached == 0)
-		return 0;
-
-	return 1;
+	args.coins_reached = 0;
+	args.exit_reached = 0;
+	args.height = map->height;
+	args.width = map->width;
+	args.map = map_copy;
+	dfs(map->p.y, map->p.x, &args);
+	free_map_copy(map_copy, map->height);
+	if (args.coins_reached != map->coin || args.exit_reached == 0)
+		return (0);
+	return (1);
 }
