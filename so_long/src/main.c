@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:51:57 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/12 14:02:08 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:02:10 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	validate_map(t_map *map)
 {
 	if (!check_rectangular(map))
-		ft_error("Error\nEl mapa no es rectangular\n");
+		ft_error("Error\nEl mapa no es rectangular\n", map);
 	if (!check_valid_chars_and_counts(map))
-		ft_error("Error\nCaracter inválido en el mapa\n");
+		ft_error("Error\nCaracter inválido en el mapa\n", map);
 	if (map->p_num != 1)
-		ft_error("Error\nDebe haber exactamente una posición inicial\n");
+		ft_error("Error\nDebe haber exactamente una posición inicial\n", map);
 	if (map->exit != 1)
-		ft_error("Error\nDebe haber exactamente una salida\n");
+		ft_error("Error\nDebe haber exactamente una salida\n", map);
 	if (map->coin < 1)
-		ft_error("Error\nDebe haber al menos un coleccionable\n");
+		ft_error("Error\nDebe haber al menos un coleccionable\n", map);
 	if (!check_walls(map))
-		ft_error("Error\nEl mapa no está cerrado por muros\n");
+		ft_error("Error\nEl mapa no está cerrado por muros\n", map);
 	if (!check_path_validity(map))
-		ft_error("Error\nNo hay un camino válido a todos los elementos\n");
+		ft_error("Error\nNo hay camino valido a todos los elementos\n", map);
 }
 
 void	print_map(t_map *map)
@@ -49,7 +49,7 @@ void	init_and_run_game(t_map *map)
 	map->mlx = mlx_init(map->width * TILE_SIZE,
 			map->height * TILE_SIZE, "so_long", true);
 	if (!map->mlx)
-		ft_error("Error\nNo se pudo inicializar MLX\n");
+		ft_error("Error\nNo se pudo inicializar MLX\n", map);
 	create_map(map);
 	find_player_position(map);
 	mlx_key_hook(map->mlx, key_hook, map);
