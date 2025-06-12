@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:54:43 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 16:54:44 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:55:58 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	handle_collect_or_exit(t_map *game, int new_x, int new_y)
 	{
 		game->coin_c--;
 		disable_collected(game, new_x, new_y);
+		if (game->coin_c == 0)
+			ft_printf("¡Todos los coleccionables recogidos! puedes salir.\n");
 	}
 	if (game->map[new_y][new_x] == 'E' && game->coin_c == 0)
 	{
@@ -72,8 +74,6 @@ void	move_player(t_map *game, int new_x, int new_y)
 		new_x * TILE_SIZE, new_y * TILE_SIZE);
 	game->moves++;
 	ft_printf("Movimientos: %d\n", game->moves);
-	if (game->coin_c == 0)
-		ft_printf("¡Todos los coleccionables recogidos! Ahora puedes salir.\n");
 }
 
 void	key_hook(mlx_key_data_t keydata, void *param)
@@ -97,6 +97,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			new_x--;
 		else if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT)
 			new_x++;
+		else
+			return ;
 		move_player(game, new_x, new_y);
 	}
 }

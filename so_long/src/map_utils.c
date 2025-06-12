@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:51:44 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 16:51:50 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:43:25 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,14 @@ void	cleanup_game(t_map *game)
 		mlx_delete_texture(game->img.coll);
 	if (game->img.exit_c)
 		mlx_delete_texture(game->img.exit_c);
+}
+
+void	render_tile(t_map *game, int x, int y)
+{
+	if (game->map[y][x] == '1')
+		mlx_image_to_window(game->mlx, game->img.wall_i,
+			x * TILE_SIZE, y * TILE_SIZE);
+	else
+		mlx_image_to_window(game->mlx, game->img.ti_i,
+			x * TILE_SIZE, y * TILE_SIZE);
 }

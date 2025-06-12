@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:59:09 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 17:08:51 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:40:42 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ void	load_images(t_map *game)
 	if (!game->img.wall_i || !game->img.ti_i || !game->img.p_i
 		|| !game->img.collect_i || !game->img.exit_c_i)
 		ft_error("Error\nNo se pudieron crear las imágenes\n");
-}
-
-static void	render_tile(t_map *game, int x, int y)
-{
-	if (game->map[y][x] == '1')
-		mlx_image_to_window(game->mlx, game->img.wall_i,
-			x * TILE_SIZE, y * TILE_SIZE);
-	else
-		mlx_image_to_window(game->mlx, game->img.ti_i,
-			x * TILE_SIZE, y * TILE_SIZE);
 }
 
 static void	render_element(t_map *game, int x, int y)

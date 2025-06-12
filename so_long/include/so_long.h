@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:20:54 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 17:19:50 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 11:44:14 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	load_textures(t_map *game);
 void	load_images(t_map *game);
 void	init_map(t_map *game);
 void	create_map(t_map *game);
+void	render_tile(t_map *game, int x, int y);
 // Funciones de ventana
 void	close_window(mlx_key_data_t keydata, void *param);
 void	open_window(t_map *game);
