@@ -17,7 +17,8 @@ LIBMLX42 = $(MLXDIR)/build/libmlx42.a
 LIBFT = $(LIBFTDIR)/libft.a
 
 LIBS = $(LIBFT) -L$(MLXDIR)/build -lmlx42 $(shell pkg-config --libs glfw3) \
-       -ldl -lm -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo 
+	   -lglfw
+#-ldl -lm -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo 
 
 # Compilador y flags
 CC = cc
