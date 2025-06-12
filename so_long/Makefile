@@ -6,7 +6,7 @@ LIBFTDIR = libs/libft
 MLXDIR = libs/MLX42
 
 # ✅ CORREGIR: Archivos que realmente existen
-SRCS = src/main.c src/check_path.c src/map_check.c src/map_utils.c src/create_map.c src/movement.c src/player_utils.c src/window.c
+SRCS = src/main.c src/check_path.c src/map_check.c src/utils.c src/map_utils.c src/create_map.c src/movement.c src/player_utils.c src/window.c
 OBJ = $(SRCS:.c=.o)
 
 # Includes
