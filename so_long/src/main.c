@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:51:57 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 16:52:49 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 14:02:08 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,32 @@
 
 void	validate_map(t_map *map)
 {
+	if (!check_rectangular(map))
+		ft_error("Error\nEl mapa no es rectangular\n");
 	if (!check_valid_chars_and_counts(map))
 		ft_error("Error\nCaracter inválido en el mapa\n");
 	if (map->p_num != 1)
 		ft_error("Error\nDebe haber exactamente una posición inicial\n");
-	if (map->exit < 1)
-		ft_error("Error\nDebe haber al menos una salida\n");
+	if (map->exit != 1)
+		ft_error("Error\nDebe haber exactamente una salida\n");
 	if (map->coin < 1)
 		ft_error("Error\nDebe haber al menos un coleccionable\n");
-	if (!check_rectangular(map))
-		ft_error("Error\nEl mapa no es rectangular\n");
 	if (!check_walls(map))
 		ft_error("Error\nEl mapa no está cerrado por muros\n");
 	if (!check_path_validity(map))
-		ft_error("Error\nNo hay un camino válido a todos las elementos\n");
+		ft_error("Error\nNo hay un camino válido a todos los elementos\n");
+}
+
+void	print_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[i])
+	{
+		ft_printf("%s\n", map->map[i]);
+		i++;
+	}
 }
 
 void	init_and_run_game(t_map *map)
@@ -50,18 +62,12 @@ void	init_and_run_game(t_map *map)
 int	main(int ac, char **av)
 {
 	t_map	map;
-	int		i;
 
 	if (ac == 2 && check_ber_extension(av[1]))
 	{
 		ft_memset(&map, 0, sizeof(t_map));
 		read_map(&map, av[1]);
-		i = 0;
-		while (map.map[i])
-		{
-			ft_printf("%s\n", map.map[i]);
-			i++;
-		}
+		print_map(&map);
 		validate_map(&map);
 		init_and_run_game(&map);
 	}

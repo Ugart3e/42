@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:30:06 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/11 16:43:27 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:53:55 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,18 @@ int	check_rectangular(t_map *map)
 	int	len;
 	int	i;
 
-	i = 1;
+	if (!map->map || !map->map[0])
+		return (0);
 	len = ft_strlen(map->map[0]);
+	if (len == 0)
+		return (0);
 	map->width = len;
 	map->height = 0;
+	i = 0;
 	while (map->map[i])
 	{
+		if (ft_strlen(map->map[i]) == 0)
+			return (0);
 		if ((int)ft_strlen(map->map[i]) != len)
 			return (0);
 		i++;
