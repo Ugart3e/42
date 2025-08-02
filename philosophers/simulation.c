@@ -79,7 +79,15 @@ void init_simulation(t_table *table)
     if(0 == table->nbr_limit_meals)
         return ;
     if(1 == table->philo_nbr)
+    {
+        table->start_simulation_time = gettime(MILISECOND);
+        set_bool(&table->table_mutex, &table->threads_ready, true);
         safe_thread_handle(&table->philos[0].thread_id, lonely, &table->philos[0], CREATE);
+        safe_thread_handle(&table->monitor, monitor_dinner, table, CREATE);
+        safe_thread_handle(&table->philos[0].thread_id, NULL, NULL, JOIN);
+        safe_thread_handle(&table->monitor, NULL, NULL, JOIN);
+        return;
+    }
     else
     {
         table->start_simulation_time = gettime(MILISECOND);
