@@ -1,9 +1,4 @@
 {
-  "C_Cpp.errorSquiggles": "enabled",
-  "files.associations": {
-    "libft.h": "c",
-    "string.h": "c"
-  },
   "C_Cpp_Runner.cCompilerPath": "clang",
   "C_Cpp_Runner.cppCompilerPath": "clang++",
   "C_Cpp_Runner.debuggerPath": "lldb",
