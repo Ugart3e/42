@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:20:54 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/12 15:15:17 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:03:14 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,11 @@ int		check_valid_chars_and_counts(t_map *map);
 int		process_map_char(t_map *map, int i, int j);
 int		check_rectangular(t_map *map);
 int		check_walls(t_map *map);
-void	ft_error(char *msg);
+void	ft_error(char *msg, t_map *game);
 int		check_path_validity(t_map *map);
 void	cleanup_game(t_map *game);
 int		check_ber_extension(char *filename);
 void	read_map(t_map *game, char *file);
-void	cleanup_game(t_map *game);
+void	cleanup_images(t_map *game);
+void	free_map(char **map, int height);
 #endif

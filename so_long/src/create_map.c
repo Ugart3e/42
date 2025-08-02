@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:59:09 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/12 11:40:42 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:01:23 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	load_textures(t_map *game)
 {
 	game->img.wall = mlx_load_png("textures/wall.png");
 	if (!game->img.wall)
-		ft_error("Error\nNo se pudo cargar wall.png\n");
+		ft_error("Error\nNo se pudo cargar wall.png\n", game);
 	game->img.tile = mlx_load_png("textures/floor.png");
 	if (!game->img.tile)
-		ft_error("Error\nNo se pudo cargar floor.png\n");
+		ft_error("Error\nNo se pudo cargar floor.png\n", game);
 	game->img.p = mlx_load_png("textures/player.png");
 	if (!game->img.p)
-		ft_error("Error\nNo se pudo cargar player.png\n");
+		ft_error("Error\nNo se pudo cargar player.png\n", game);
 	game->img.coll = mlx_load_png("textures/coin.png");
 	if (!game->img.coll)
-		ft_error("Error\nNo se pudo cargar coin.png\n");
+		ft_error("Error\nNo se pudo cargar coin.png\n", game);
 	game->img.exit_c = mlx_load_png("textures/exit.png");
 	if (!game->img.exit_c)
-		ft_error("Error\nNo se pudo cargar exit.png\n");
+		ft_error("Error\nNo se pudo cargar exit.png\n", game);
 	if (!game->img.wall || !game->img.tile || !game->img.p
 		|| !game->img.coll || !game->img.exit_c)
-		ft_error("Error\nNo se pudieron cargar las texturas\n");
+		ft_error("Error\nNo se pudieron cargar las texturas\n", game);
 }
 
 void	load_images(t_map *game)
@@ -43,7 +43,7 @@ void	load_images(t_map *game)
 	game->img.exit_c_i = mlx_texture_to_image(game->mlx, game->img.exit_c);
 	if (!game->img.wall_i || !game->img.ti_i || !game->img.p_i
 		|| !game->img.collect_i || !game->img.exit_c_i)
-		ft_error("Error\nNo se pudieron crear las imágenes\n");
+		ft_error("Error\nNo se pudieron crear las imágenes\n", game);
 }
 
 static void	render_element(t_map *game, int x, int y)

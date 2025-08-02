@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 16:30:06 by jougarte          #+#    #+#             */
-/*   Updated: 2025/06/12 13:53:55 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:07:09 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ int	check_walls(t_map *map)
 	return (1);
 }
 
-void	ft_error(char *msg)
+void	ft_error(char *msg, t_map *game)
 {
 	ft_putstr_fd(msg, 2);
+	cleanup_game(game);
 	exit(EXIT_FAILURE);
 }
