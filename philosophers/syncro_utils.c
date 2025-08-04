@@ -1,36 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syncro_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/04 17:39:48 by jougarte          #+#    #+#             */
+/*   Updated: 2025/08/04 17:41:07 by jougarte         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void wait_threads(t_table *table)
+void	wait_threads(t_table *table)
 {
-    while(!get_bool(&table->table_mutex, &table->threads_ready))
-        ;
+	while (!get_bool(&table->table_mutex, &table->threads_ready))
+		;
 }
 
-bool all_threads_running(t_mtx *mutex, long *threads, long philo_nbr)
+bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr)
 {
-   bool ret;
-   ret = false;
-   
-   safe_mutex_handle(mutex, LOCK);
-   if(*threads == philo_nbr)
-    ret = true;
-   safe_mutex_handle(mutex, UNLOCK);
-   return (ret);
+	bool	ret;
+
+	ret = false;
+	safe_mutex_handle(mutex, LOCK);
+	if (*threads == philo_nbr)
+		ret = true;
+	safe_mutex_handle(mutex, UNLOCK);
+	return (ret);
 }
 
-void increase_long(t_mtx *mutex, long *value)
+void	increase_long(t_mtx *mutex, long *value)
 {
-    safe_mutex_handle(mutex, LOCK);
-    (*value)++;
-    safe_mutex_handle(mutex, UNLOCK);
-
+	safe_mutex_handle(mutex, LOCK);
+	(*value)++;
+	safe_mutex_handle(mutex, UNLOCK);
 }
 
-void desynchro(t_philo *philo)
+void	desynchro(t_philo *philo)
 {
-    if (philo->id % 2 == 0)
-        return ;
-    usleep(100); // o 100
+	if (philo->id % 2 == 0)
+		return ;
+	usleep(100);
 }
 
 void	check_death(t_table *table)
