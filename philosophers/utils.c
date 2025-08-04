@@ -6,15 +6,12 @@ void ft_error(char *error)
     exit(EXIT_FAILURE);
 }
 
-long	ft_atol(const char *str)
+long ft_atol(const char *str)
 {
-	long		result;
-	int			sign;
-	int			i;
+	int i = 0;
+	int sign = 1;
+	long result = 0;
 
-	result = 0;
-	sign = 1;
-	i = 0;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
@@ -23,13 +20,18 @@ long	ft_atol(const char *str)
 			sign = -1;
 		i++;
 	}
-    while (str[i] >= '0' && str[i] <= '9')
+	if (!str[i] || str[i] < '0' || str[i] > '9')
+		ft_error("Invalid number format");
+	while (str[i])
 	{
+		if (str[i] < '0' || str[i] > '9')
+			ft_error("Invalid number format");
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
 	return (result * sign);
 }
+
 
 long gettime(t_time_code time_code)
 {
