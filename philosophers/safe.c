@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:17:28 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 17:18:08 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 21:41:32 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	handle_thread_error(int status, t_opcode opcode)
 	else if (status == EINVAL && JOIN == opcode || DETACH == opcode)
 		ft_error("The value specified by threda isnt joinable");
 	else if (ESRCH == status)
-		ft_error("deadlock detected");
+		;
 }
 /*
 THREAD SAFE FUNCTIONS

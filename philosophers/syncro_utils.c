@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:39:48 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 17:41:07 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 22:02:09 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	desynchro(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 		return ;
-	usleep(100);
+	think(philo, false);
 }
 
 void	check_death(t_table *table)
