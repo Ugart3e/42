@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:50:36 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 16:53:28 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:27:55 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,15 @@ void	data_init(t_table *table)
 		i++;
 	}
 	philo_init(table);
+}
+
+void	lonely_init(t_table *table)
+{
+		table->start_simulation_time = gettime(MILISECOND);
+		set_bool(&table->table_mutex, &table->threads_ready, true);
+		safe_thread_handle(&table->philos[0].thread_id,
+			lonely, &table->philos[0], CREATE);
+		safe_thread_handle(&table->monitor, monitor_dinner, table, CREATE);
+		safe_thread_handle(&table->philos[0].thread_id, NULL, NULL, JOIN);
+		safe_thread_handle(&table->monitor, NULL, NULL, JOIN);
 }

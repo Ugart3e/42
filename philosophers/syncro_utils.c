@@ -32,3 +32,18 @@ void desynchro(t_philo *philo)
         return ;
     usleep(100); // o 100
 }
+
+void	check_death(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->philo_nbr)
+	{
+		if (!get_bool(&table->philos[i].philo_mutex, &table->philos[i].full))
+			return ;
+		i++;
+	}
+	set_bool(&table->table_mutex, &table->end_simulation, true);
+	printf("ALL PHILOS ARE FULL!\n");
+}

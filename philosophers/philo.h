@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:07:49 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 17:12:32 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:32:23 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,14 @@ void	safe_thread_handle(pthread_t *thread, void *(*foo)(void *),
 			void *data, t_opcode opcode);
 //init
 void	data_init(t_table *table);
+void	lonely_init(t_table *table);
 //simulation
 void	init_simulation(t_table *table);
 void	*dinner_simulation(void *data);
 void	write_status(t_philo_state status, t_philo *philo, bool debug);
 void	*lonely(void *arg);
 void	think(t_philo *philo, bool b);
+void	check_sim_type(t_table *table);
 //getters/setters
 void	set_bool(t_mtx *mutex, bool *dest, bool value);
 bool	get_bool(t_mtx *mutex, bool *value);
@@ -123,5 +125,6 @@ void	wait_threads(t_table *table);
 bool	all_threads_running(t_mtx *mutex, long *threads, long philo_nbr);
 void	increase_long(t_mtx *mutex, long *value);
 void	desynchro(t_philo *philo);
+void	check_death(t_table *table);
 //monitor
 void	*monitor_dinner(void *data);

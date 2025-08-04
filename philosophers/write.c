@@ -45,3 +45,27 @@ void write_status(t_philo_state status, t_philo *philo, bool debug)
     }
     safe_mutex_handle(&philo->table->write_mutex, UNLOCK);
 }
+
+void	check_sim_type(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	if (0 == table->nbr_limit_meals)
+		return ;
+	if (1 == table->philo_nbr)
+	{
+		lonely_init(table);
+		return ;
+	}
+	else
+	{
+		table->start_simulation_time = gettime(MILISECOND);
+		while (i < table->philo_nbr)
+		{
+			safe_thread_handle(&table->philos[i].thread_id, dinner_simulation,
+				&table->philos[i], CREATE);
+			i++;
+		}
+	}
+}
