@@ -28,14 +28,7 @@ void increase_long(t_mtx *mutex, long *value)
 
 void desynchro(t_philo *philo)
 {
-    if(philo->table->philo_nbr % 2 == 0)
-        ft_usleep(3e4, philo->table);
-    else
-    {
-        if (philo->id % 2)
-        {
-            think(philo, true);  
-        }
-        
-    }
+    if (philo->id % 2 == 0)
+        return ;
+    usleep(100); // o 100
 }

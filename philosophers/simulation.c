@@ -1,5 +1,18 @@
 #include "philo.h"
 
+static void check_death(t_table *table)
+{
+    int i = 0;
+    while (i < table->philo_nbr)
+    {
+        if (!get_bool(&table->philos[i].philo_mutex, &table->philos[i].full))
+            return ;
+        i++;
+    }
+    set_bool(&table->table_mutex, &table->end_simulation, true);
+    printf("ALL PHILOS ARE FULL!\n");
+}
+
 void *lonely(void *arg)
 {
     t_philo *philo;
@@ -16,16 +29,30 @@ void *lonely(void *arg)
 static void eat(t_philo *philo)
 {
     safe_mutex_handle(&philo->fork1->fork, LOCK);
+    if (simulation_finished(philo->table))
+    {
+        safe_mutex_handle(&philo->fork1->fork, UNLOCK);
+        return;
+    }
     write_status(TAKE_FIRST_FORK, philo, DEBUG_MODE);
     safe_mutex_handle(&philo->fork2->fork, LOCK);
+    if (simulation_finished(philo->table))
+    {
+        safe_mutex_handle(&philo->fork2->fork, UNLOCK);
+        safe_mutex_handle(&philo->fork1->fork, UNLOCK);
+        return;
+    }
     write_status(TAKE_SECOND_FORK, philo, DEBUG_MODE);
     set_long(&philo->philo_mutex, &philo->last_time_meal, gettime(MILISECOND));
     philo->nbr_meals++;
     write_status(EATING, philo, DEBUG_MODE);
     ft_usleep(philo->table->time_to_eat, philo->table);
-    if(philo->table->nbr_limit_meals > 0 &&
+
+    if (philo->table->nbr_limit_meals > 0 &&
         philo->nbr_meals == philo->table->nbr_limit_meals)
+    {
         set_bool(&philo->philo_mutex, &philo->full, true);
+    }
     safe_mutex_handle(&philo->fork1->fork, UNLOCK);
     safe_mutex_handle(&philo->fork2->fork, UNLOCK);
 }
@@ -108,5 +135,5 @@ void init_simulation(t_table *table)
     }
     set_bool(&table->table_mutex, &table->end_simulation, true);
     safe_thread_handle(&table->monitor, NULL, NULL, JOIN);
-    printf("%s\n", "ALL PHILOS ARE FULL!");
+    check_death(table);
 }
