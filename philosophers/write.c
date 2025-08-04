@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:47:52 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 17:53:37 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 22:30:14 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	print_status(t_philo_state status, t_philo *philo, long elapsed)
 {
-	if (TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status
+	if ((TAKE_FIRST_FORK == status || TAKE_SECOND_FORK == status)
 		&& !simulation_finished(philo->table))
 		printf("%-6ld %d has taken a fork\n", elapsed, philo->id);
 	else if (EATING == status && !simulation_finished(philo->table))

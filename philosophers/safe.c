@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:17:28 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 21:41:32 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 22:29:40 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	*safe_malloc(size_t bytes)
 		ft_error("Error with malloc");
 	return (ret);
 }
+
 /*
 This function allows a propper wat to handle mutexes
 posible errors giving a message depending on the mutex
 error (POSIX) so you can understand where is the problem
 */
-
 static void	handle_mutex_error(int status, t_opcode opcode)
 {
 	if (status == 0)
@@ -81,10 +81,10 @@ static void	handle_thread_error(int status, t_opcode opcode)
 		ft_error("The caller does not have propper permision");
 	else if (status == EINVAL && CREATE == opcode)
 		ft_error("The value specified is invalid");
-	else if (status == EINVAL && JOIN == opcode || DETACH == opcode)
+	else if (status == EINVAL && (JOIN == opcode || DETACH == opcode))
 		ft_error("The value specified by threda isnt joinable");
 	else if (ESRCH == status)
-		;
+		status = -1;
 }
 /*
 THREAD SAFE FUNCTIONS
