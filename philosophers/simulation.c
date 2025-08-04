@@ -6,7 +6,7 @@
 /*   By: jougarte <jougarte@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 17:22:36 by jougarte          #+#    #+#             */
-/*   Updated: 2025/08/04 22:09:55 by jougarte         ###   ########.fr       */
+/*   Updated: 2025/08/04 22:23:35 by jougarte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,36 @@ static void	eat(t_philo *philo)
 //avoiding philo eating 2 times in a row
 void	think(t_philo *philo, bool pre_sim)
 {
-    int	thinking_time;
+	int	thinking_time;
 
-    if (!pre_sim)
-        write_status(THINKING, philo, DEBUG_MODE);
-    thinking_time = philo->table->time_to_eat - philo->table->time_to_sleep;
-    if (thinking_time < 10) // mínimo 10ms
-        thinking_time = 10;
-    ft_usleep(thinking_time, philo->table);
+	if (!pre_sim)
+		write_status(THINKING, philo, DEBUG_MODE);
+	thinking_time = philo->table->time_to_eat - philo->table->time_to_sleep;
+	if (thinking_time < 10)
+		thinking_time = 10;
+	ft_usleep(thinking_time, philo->table);
 }
 
 void	*dinner_simulation(void *data)
 {
-    t_philo	*philo;
+	t_philo	*philo;
 
-    philo = (t_philo *)data;
-    wait_threads(philo->table);
-    set_long(&philo->philo_mutex, &philo->last_time_meal, gettime(MILISECOND));
-    increase_long(&philo->table->table_mutex,
-        &philo->table->threads_running_nbr);
-    desynchro(philo);
-    while (!simulation_finished(philo->table))
-    {
-        eat(philo);
-        write_status(SLEEPING, philo, DEBUG_MODE);
-        ft_usleep(philo->table->time_to_sleep, philo->table);
-        think(philo, false);
-        if (philo->full)
-            break ;
-    }
-    return (NULL);
+	philo = (t_philo *)data;
+	wait_threads(philo->table);
+	set_long(&philo->philo_mutex, &philo->last_time_meal, gettime(MILISECOND));
+	increase_long(&philo->table->table_mutex,
+		&philo->table->threads_running_nbr);
+	desynchro(philo);
+	while (!simulation_finished(philo->table))
+	{
+		eat(philo);
+		write_status(SLEEPING, philo, DEBUG_MODE);
+		ft_usleep(philo->table->time_to_sleep, philo->table);
+		think(philo, false);
+		if (philo->full)
+			break ;
+	}
+	return (NULL);
 }
 
 void	init_simulation(t_table *table)
